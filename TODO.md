@@ -1,6 +1,6 @@
-* [ ] prune cose.cddl
+* [x] prune cose.cddl
 * [ ] add KAT examples
 * [ ] add KAT bundle examples
 * [ ] add binding examples
-* [ ] collection entries are bstr or array?
+* [x] collection entries are not serialised as bstr
 * [x] fold long lines
