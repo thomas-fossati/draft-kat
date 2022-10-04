@@ -9,3 +9,19 @@ else
 	git clone -q --depth 10 $(CLONE_ARGS) \
 	    -b main https://github.com/martinthomson/i-d-template $(LIBDIR)
 endif
+
+include cddl/frag.mk
+
+define cddl_targets
+
+$(drafts_xml):: cddl/$(1)-autogen.cddl
+
+cddl/$(1)-autogen.cddl: $(addprefix cddl/,$(2))
+	$(MAKE) -C cddl check-$(1) check-$(1)-examples
+
+endef # cddl_targets
+
+$(eval $(call cddl_targets,kat-bundle,$(KAT_BUNDLE_FRAGS)))
+$(eval $(call cddl_targets,kat,$(KAT_FRAGS)))
+
+clean:: ; $(MAKE) -C cddl clean

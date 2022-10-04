@@ -1,0 +1,10 @@
+COSE-Sign1-kat = [
+    protected: bytes .cbor kat-protected-headers
+    unprotected: {}
+    payload: bytes .cbor kat
+    signature: bytes
+]
+
+kat-protected-headers = {
+    &(alg-id: 1) => int
+}

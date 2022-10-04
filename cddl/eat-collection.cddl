@@ -1,0 +1,5 @@
+kat-bundle = {
+    &(eat_profile: 265) => "http://arm.com/kat/1.0.0"
+    "kat" => bytes .cbor COSE-Sign1-kat
+    "psa-token" => bytes .cbor COSE-Sign1-psa-token
+}

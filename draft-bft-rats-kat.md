@@ -31,8 +31,9 @@ author:
 normative:
   I-D.tschofenig-rats-psa-token: psa-token
   I-D.ietf-rats-eat: eat
-  I-D.frost-rats-eat-collection: coll
+  I-D.frost-rats-eat-collection: eat-coll
   RFC8610: cddl
+  RFC8747: cwt-pop
   RFC9165: cddlplus
   STD94:
     -: cbor
@@ -69,19 +70,39 @@ The examples in {{examples}} use CBOR diagnostic notation defined in {{Section
 The reader is assumed to be familiar with the vocabulary and concepts
 defined in {{-rats-arch}}.
 
+# Key Attesatation Token
+
+## Proof-of-Possession
+
+{{-cwt-pop}}
+
+KAS is the Issuer
+TLS-B is the Presenter
+TLS-A is the Recipient
+
 ~~~ cddl
-start = []
+{::include cddl/kat.cddl}
 ~~~
-{: #fig-cddl artwork-align="left"
-   title="CDDL definition"}
+{: #fig-kat-cddl artwork-align="left"
+   title="KAT definition"}
+
+## KAT Bundle
+
+{{-eat-coll}}
+
+~~~ cddl
+{::include cddl/eat-collection.cddl}
+~~~
+{: #fig-kat-bundle-cddl artwork-align="left"
+   title="KAT bundle definition"}
 
 # Examples {#examples}
 
 ~~~ cbor-diag
-[]
+{::include cddl/examples/kat-1.diag}
 ~~~
-{: #fig-example-TODO artwork-align="left"
-   title="TODO"}
+{: #fig-example-kat artwork-align="left"
+   title="KAT"}
 
 # Security Considerations
 
@@ -93,9 +114,13 @@ TODO IANA
 
 --- back
 
+# Amalgamated CDDL
+
+~~~ cddl
+{::include cddl/kat-bundle-autogen.cddl}
+~~~
+
 # Acknowledgments
 {:numbered="false"}
 
 TODO acknowledge.
-
--- vim: tw=72 ts=4 sw=4 et
