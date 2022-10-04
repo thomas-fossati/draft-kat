@@ -6,6 +6,7 @@ KAT_BUNDLE_FRAGS += eat-collection.cddl
 KAT_BUNDLE_FRAGS += kat.cddl
 KAT_BUNDLE_FRAGS += kat-sign1.cddl
 KAT_BUNDLE_FRAGS += psa-token.cddl
+KAT_BUNDLE_FRAGS += psa-token-cose.cddl
 KAT_BUNDLE_FRAGS += cose.cddl
 
 KAT_BUNDLE_EXAMPLES :=

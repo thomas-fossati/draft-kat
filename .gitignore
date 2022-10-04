@@ -21,3 +21,7 @@ draft-bft-rats-kat.xml
 package-lock.json
 report.xml
 !requirements.txt
+*.diag-folded
+*.cbor
+*.pretty
+*-autogen.cddl

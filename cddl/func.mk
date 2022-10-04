@@ -24,6 +24,8 @@ check-$(1)-examples: $(1)-autogen.cddl $(3:.diag=.cbor)
 		$$(cddl) $$< validate $$$$f &>/dev/null || exit 1 ; \
 		echo ">> saving prettified CBOR to $$$${f%.cbor}.pretty" ; \
 		$$(cbor2pretty) $$$$f > $$$${f%.cbor}.pretty ; \
+		echo ">> saving folded CBOR DIAG to $$$${f%.cbor}.diag-folded" ; \
+		fold -w 64 $$$${f%.cbor}.diag > $$$${f%.cbor}.diag-folded ; \
 	done
 
 .PHONY: check-$(1)-examples

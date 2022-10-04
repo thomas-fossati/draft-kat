@@ -1,0 +1,24 @@
+Tagged-COSE-psa-token = Tagged-COSE-Sign1-psa-token /
+                        Tagged-COSE-Mac0-psa-token
+
+Tagged-COSE-Sign1-psa-token = #6.18(COSE-Sign1-psa-token)
+
+COSE-Sign1-psa-token = [
+    protected: bytes .cbor psa-token-protected-headers
+    unprotected: {}
+    payload: bytes .cbor psa-token
+    signature: bytes
+]
+
+Tagged-COSE-Mac0-psa-token = #6.17(COSE-Mac0-psa-token)
+
+COSE-Mac0-psa-token = [
+    protected: bytes .cbor psa-token-protected-headers
+    unprotected: {}
+    payload: bytes .cbor psa-token
+    tag: bytes
+]
+
+psa-token-protected-headers = {
+    &(alg-id: 1) => int
+}
