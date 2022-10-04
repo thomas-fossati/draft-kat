@@ -99,7 +99,7 @@ TLS-A is the Recipient
 # Examples {#examples}
 
 ~~~ cbor-diag
-{::include cddl/examples/kat-1.diag-folded}
+{::include cddl/examples/kat-1.diag}
 ~~~
 {: #fig-example-kat artwork-align="left"
    title="KAT"}
