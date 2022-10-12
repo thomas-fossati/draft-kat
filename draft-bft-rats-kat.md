@@ -86,7 +86,7 @@ private key.
 - Attestation Token (AT): A collection of claims that a RoT assembles (and signs) with
 the purpose of informing - in a verifiable way - relying parties about the identity and
 state of the platform. Essentially a type of Evidence as per the RATS architecture
-terminology.
+terminology {{rats-arch}}.
 
 - Platform Attestation Token (PAT): An AT containing claims relating to the security
 state of the platform, including software constituting the platform trusted computing 
@@ -161,7 +161,7 @@ to be linked to the Key Attestation Token (KAT). The Key Attestation Token (KAT)
 the public key of the IK (pkT) and is then signed with the Key Attestation Key (KAK).
 
 To ensure freshness of the PAT and the KAT a nonce is used, as suggested by the RATS
-architecture. Here is the symbolic API call to request a KAT and a PAT, which 
+architecture {{rats-arch}}. Here is the symbolic API call to request a KAT and a PAT, which 
 are concatinated together as the CAB.
 
 ~~~~
