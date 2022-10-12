@@ -6,6 +6,14 @@
     .bstr {
       / nonce / 10: h'b91b03129222973c214e42bf31d6872a
                       3ef2dbdda401fbd1f725d48d6bf9c817',
+      / kak-pub / 2500: {
+          / kty /  1: 2, / EC2 /
+          / crv / -1: 1, / P-256 /
+          / x /   -2: h'F0FFFA7BA35E76E44CA1F5446D327C83
+                        82A5A40E5F29745DF948346C7C88A5D3',
+          / y /   -3: h'7CB4C4873CBB6F097562F61D5280768C
+                        D2CFE35FBA97E997280DBAAAE3AF92FE'
+      },
       / cnf / 8: {
         / COSE_Key / 1: {
             / kty /  1: 2, / EC2 /
@@ -16,7 +24,7 @@
             / y /   -3: h'F95E1D4B851A2CC80FFF87D8E23F2
                           2AFB725D535E515D020731E79A3B4
                           E47120'
-        }
+      }
     },
    / signatures / [
      [
