@@ -1,7 +1,6 @@
 kat = {
     &(eat_nonce: 10) => bstr .size (8..64)
     &(cnf: 8) => ak-pub
-    &(kak-pub: 2500) => COSE_Key
 }
 
 ak-pub = cnf-map
