@@ -182,7 +182,9 @@ be performed locally at the Recipient, whereby the following checks are made:
 - The PAT MUST be checked for replays, which can be checked by comparing the nonce included
   in one of the claims and matching it against the nonce provided to the attester.
 - The claims in the PAT MUST be matched against stored reference values.
-- The signature protecting the KAT MUST pass verification. 
+- The signature protecting the KAT MUST pass verification.
+- The KAT MUST be checked for replays using the nonce included in the KAT definition (see 
+{{fig-kat-cddl}}).
 
 Once all these steps are completed, the verifier produces the attestation result and
 includes (if needed) the IK public key (pkT). 
