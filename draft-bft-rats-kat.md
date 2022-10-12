@@ -173,7 +173,7 @@ demonstrate possession of the private key. The signature operation uses the priv
 key of the IK (skT). How this proof-of-possession of the private key is accomplished
 depends on the details of the usage protocol and is outside the scope of this specification.
 
-The Recipient of the CAP and the proof-of-possession data (such as a digital signature)
+The Recipient of the CAB and the proof-of-possession data (such as a digital signature)
 first extracts the PAT and the KAT. The PAT and the KAT may need to be 
 conveyed to a Verifier. If the PAT is in the form of attestation results the checks can 
 be performed locally at the Recipient, whereby the following checks are made:
