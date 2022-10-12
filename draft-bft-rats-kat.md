@@ -64,7 +64,9 @@ The following terms are used in this document:
 - Root of Trust (RoT): A set of software and/or hardware components that need 
 to be trusted to act as a security foundation required for accomplishing the
 security goals. In our case, the RoT is expected to offer the functionality 
-for attesting to the state of the platform.
+for attesting to the state of the platform and indirectly also to attest 
+the integrity of the IK (public as well as private key) and the confidentiality
+IK private key.
 
 - Attestation Key (AK): Cryptographic key belonging to the RoT that is only used
  to sign attestation tokens. 
