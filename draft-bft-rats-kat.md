@@ -55,10 +55,6 @@ This document defines an evidence format for key attestation.
 
 This document defines an evidence format for key attestation.
 
-CDDL {{-cddl}} {{-cddlplus}} is used to describe the data formats
-and the examples in {{examples}} use CBOR diagnostic notation defined
-in {{Section 8 of -cbor}} and {{Appendix G of -cddl}}.
-
 # Terminology
 
 {::boilerplate bcp14-tagged}
@@ -114,6 +110,10 @@ from the presenter.
 with a PAT in a CAB.
 
 The reader is assumed to be familiar with the vocabulary and concepts defined in {{-rats-arch}}.
+
+CDDL {{-cddl}} {{-cddlplus}} is used to describe the data formats
+and the examples in {{examples}} use CBOR diagnostic notation defined
+in {{Section 8 of -cbor}} and {{Appendix G of -cddl}}.
 
 # Architecture
 
