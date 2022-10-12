@@ -170,7 +170,7 @@ cab = createCAB(key_id, nonce)
 
 Once the CAB has been sent by the Presenter to the Recipient, the Presenter has to 
 demonstrate possession of the private key. The signature operation uses the private 
-key of the IK (skT). How this is proof-of-possession of the private key is accomplished
+key of the IK (skT). How this proof-of-possession of the private key is accomplished
 depends on the details of the usage protocol and is outside the scope of this specification.
 
 The Recipient of the CAP and the proof-of-possession data (such as a digital signature)
