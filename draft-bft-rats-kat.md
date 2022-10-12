@@ -124,7 +124,7 @@ each other. From a key attestation point of view, there are the Key Attestation 
 the Presenter and the Recipient. Additional parties are added when considering attestation-
 related entities.
 
-~~~ 
+~~~ aasvg
  +----------------------------------+
  | Attester                         |
  |                                  |
