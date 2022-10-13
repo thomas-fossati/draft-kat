@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-10-11T00:48:55.553705+00:00",
+  "timestamp": "2022-10-13T00:53:53.550545+00:00",
   "repo": "thomas-fossati/draft-kat",
   "labels": [
     {
@@ -49,6 +49,345 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
-  "pulls": []
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOIIKzuM5TtkPL",
+      "title": "Linking strategy between platform and key tokens",
+      "url": "https://github.com/thomas-fossati/draft-kat/issues/1",
+      "state": "OPEN",
+      "author": "ionut-arm",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "ionut-arm"
+      ],
+      "labels": [],
+      "body": "We need to write up a detailed description of how the tokens in the KAT Bundle/EAT collection are (cryptographically) linked together. This might have to build upon the more generic description that will be added to the [EAT collection draft](https://thomas-fossati.github.io/draft-kat/draft-bft-rats-kat.html#I-D.frost-rats-eat-collection).\r\n\r\nThese details are also relevant to the security of the token and bundle, so should also be mentioned in the Security Considerations section.",
+      "createdAt": "2022-10-11T11:12:42Z",
+      "updatedAt": "2022-10-12T16:04:03Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "OWNER",
+          "body": "I have a few notes to share:\r\n\r\n\r\n# evidence composition\r\n\r\nthe goal is to model layered attestation environments and attestation of composite devices.\r\n\r\ntwo models are discussed, direct and delegated, describing the split of responsibilities between pairs of cooperating attesters, A and B, which are typically arranged in a parent/child relationship reflecting their relative order in the system's chain of trust (CoT)\r\n\r\n## direct\r\n\r\nin the direct model, attester A entrusts attester B for collecting claims about B's target environment\r\n\r\nB does not sign its claims, A does.\r\n\r\n## delegated\r\n\r\nin the delegated model, attester A entrusts attester B for collecting and signing claims about B's target environment\r\n\r\n## cross-evidence binding\r\n\r\na \"evidence binder\" is a EAT claim that models CoT links between attesting environments.  it encodes the linkage between pairs of evidence produced by different attesters (A and B) in a EAT collection.\r\n\r\n(assumption: trust delegation is tree-like)\r\n\r\nthe high level idea is to sample B's state at a certain point in time and inject an \"image\" thereof (the binder's value) into A, basically treating B as part of A's target environment\r\n\r\nmore precisely, the proposal is to:\r\n\r\n* select a \"representative\" subset of B's claims\r\n* wrap their values in a self-delimiting structure\r\n* serialise the wrapping structure into a byte string\r\n* cryptographically digest said byte string\r\n* let A add the computed digest to its target environment\r\n\r\nfinally, let A and B independently compute evidence for their target environments.\r\n\r\n### binding freshness\r\n\r\nwhen either end of the binding operation (A or B) change their state, their binding becomes stale and must be recomputed\r\n\r\n### binder description\r\n\r\nit may be desirable for simplifying appraisal to explicitly encode the instructions for describing (and therefore verifying) the binding in a claim.\r\n \r\nto that end, the binding function described in {{cross-evidence-binding}} needs to be specified unambiguously.\r\n \r\nwe make the following assumptions:\r\n\r\n* the digest is a known hash function (e.g., one from the COSE algorithms)\r\n* the input is a ordered subset of B's claims\r\n* the output is a claim in the bound token\r\n \r\nThen B could have a \"binder description\" claim as follows:\r\n\r\n```cddl\r\n; $hash-algo-id($binding-ctx, $claim-key_0, ..., $claim-key_n) => $bound-token-id[$out]\r\n;\r\ntoken-binder = [\r\n    bind-f: hash-algo-id\r\n    params: [ binding-ctx, + claim-key ]\r\n    dst: [ bound-token-id, claim-key ]\r\n]\r\n \r\nbinding-ctx = text\r\nclaim-key = int / text\r\nhash-algo-id = int / text\r\nbound-token-id = int / text\r\n```\r\n \r\nwhich may be instantiated as:\r\n \r\n```\r\n[\r\n  -16, / SHA-256 /\r\n  [\r\n    \"key-attestation-token\",\r\n    8 / TIK public in cnf /\r\n  ],\r\n  [\r\n    \"psa-token\", / PSA platform token id in the EAT collection /\r\n    10 / nonce /\r\n  ]\r\n]\r\n```\r\n\r\n\r\n",
+          "createdAt": "2022-10-12T15:59:27Z",
+          "updatedAt": "2022-10-12T16:04:03Z"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "id": "I_kwDOIIKzuM5TtmXQ",
+      "title": "More generic platform attestation token",
+      "url": "https://github.com/thomas-fossati/draft-kat/issues/2",
+      "state": "OPEN",
+      "author": "ionut-arm",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Instead of focusing primarily on PSA Attestation as the main underlying platform token, we should try to abstract that away to generic platform attestation and use PSA Attestation only as an example.",
+      "createdAt": "2022-10-11T11:19:43Z",
+      "updatedAt": "2022-10-11T11:19:43Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 6,
+      "id": "I_kwDOIIKzuM5T1Lyh",
+      "title": "PAT caching",
+      "url": "https://github.com/thomas-fossati/draft-kat/issues/6",
+      "state": "OPEN",
+      "author": "hannestschofenig",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Comment from Ionu:\r\n\r\n> Regarding the freshness - do we want to convey the option of \"PAT generated at initialisation and then cached\", where only the KAT includes the freshness? Also, I don't think it's specified that the RP is the one providing the nonce, but perhaps that can be assumed\r\n",
+      "createdAt": "2022-10-12T15:55:02Z",
+      "updatedAt": "2022-10-12T15:55:02Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 7,
+      "id": "I_kwDOIIKzuM5T1OSF",
+      "title": "freshness in \"delegated mode\"",
+      "url": "https://github.com/thomas-fossati/draft-kat/issues/7",
+      "state": "CLOSED",
+      "author": "thomas-fossati",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "        Regarding the freshness - do we want to convey the option of \"PAT generated at initialisation and then cached\", where only the KAT includes the freshness? Also, I don't think it's specified that the RP is the one providing the nonce, but perhaps that can be assumed\r\n\r\n_Originally posted by @ionut-arm in https://github.com/thomas-fossati/draft-kat/pull/5#discussion_r993495387_\r\n      ",
+      "createdAt": "2022-10-12T16:02:34Z",
+      "updatedAt": "2022-10-12T16:03:38Z",
+      "closedAt": "2022-10-12T16:03:38Z",
+      "comments": [
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "OWNER",
+          "body": "Hannes had already opened #6",
+          "createdAt": "2022-10-12T16:03:37Z",
+          "updatedAt": "2022-10-12T16:03:37Z"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "id": "I_kwDOIIKzuM5T1Pax",
+      "title": "provide an example of the combined token",
+      "url": "https://github.com/thomas-fossati/draft-kat/issues/8",
+      "state": "OPEN",
+      "author": "thomas-fossati",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "We should include a full example since the signature covering the KAT is essential.\r\n\r\n_Originally posted by @hannestschofenig in https://github.com/thomas-fossati/draft-kat/issues/4#issuecomment-1276398042_\r\n      ",
+      "createdAt": "2022-10-12T16:05:52Z",
+      "updatedAt": "2022-10-12T16:05:52Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": [
+    {
+      "number": 3,
+      "id": "PR_kwDOIIKzuM5ApOJi",
+      "title": "Removal of the public key",
+      "url": "https://github.com/thomas-fossati/draft-kat/pull/3",
+      "state": "CLOSED",
+      "author": "hannestschofenig",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-10-12T11:32:34Z",
+      "updatedAt": "2022-10-12T13:04:12Z",
+      "baseRepository": "thomas-fossati/draft-kat",
+      "baseRefName": "main",
+      "baseRefOid": "d0b23e6bfdcb89aa4a9a16c105f6b3d57581a803",
+      "headRepository": "hannestschofenig/draft-kat",
+      "headRefName": "patch-1",
+      "headRefOid": "51186b7f819f2178dea8b04f22e01fff7319e1d5",
+      "closedAt": "2022-10-12T13:04:09Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOIIKzuM5ApQeA",
+      "title": "Updated example",
+      "url": "https://github.com/thomas-fossati/draft-kat/pull/4",
+      "state": "CLOSED",
+      "author": "hannestschofenig",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-10-12T11:40:58Z",
+      "updatedAt": "2022-10-12T16:06:44Z",
+      "baseRepository": "thomas-fossati/draft-kat",
+      "baseRefName": "main",
+      "baseRefOid": "d0b23e6bfdcb89aa4a9a16c105f6b3d57581a803",
+      "headRepository": "hannestschofenig/draft-kat",
+      "headRefName": "patch-2",
+      "headRefOid": "2cc4d72f0174dc1a91f1dd446b164960b4fd3cd2",
+      "closedAt": "2022-10-12T15:51:31Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "hannestschofenig",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I think we should include a full example since the signature covering the KAT is essential.",
+          "createdAt": "2022-10-12T15:51:31Z",
+          "updatedAt": "2022-10-12T15:51:31Z"
+        },
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "OWNER",
+          "body": "> I think we should include a full example since the signature covering the KAT is essential.\r\n\r\nAgree.  I've opened #8 to track this.",
+          "createdAt": "2022-10-12T16:06:44Z",
+          "updatedAt": "2022-10-12T16:06:44Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIIKzuM5D5-Dv",
+          "commit": {
+            "abbreviatedOid": "2cc4d72"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "this example is validated against the kat schema (i.e., the naked claims-set) rather than the COSE Sign(1) wrapper.\r\n\r\nYou can check the validity of the example against the CDDL with `make -C cddl`",
+          "createdAt": "2022-10-12T15:04:55Z",
+          "updatedAt": "2022-10-12T15:05:25Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "id": "PR_kwDOIIKzuM5ApmYE",
+      "title": "High-Level Description Added",
+      "url": "https://github.com/thomas-fossati/draft-kat/pull/5",
+      "state": "MERGED",
+      "author": "hannestschofenig",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-10-12T12:48:35Z",
+      "updatedAt": "2022-10-12T22:30:30Z",
+      "baseRepository": "thomas-fossati/draft-kat",
+      "baseRefName": "main",
+      "baseRefOid": "d0b23e6bfdcb89aa4a9a16c105f6b3d57581a803",
+      "headRepository": "hannestschofenig/draft-kat",
+      "headRefName": "patch-3",
+      "headRefOid": "a22a3d76589df499701f17d188260f58873f9bc6",
+      "closedAt": "2022-10-12T22:30:30Z",
+      "mergedAt": "2022-10-12T22:30:30Z",
+      "mergedBy": "thomas-fossati",
+      "mergeCommit": {
+        "oid": "19bc260c7c06a419158d35598ec78f695e32d403"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIIKzuM5D5LrA",
+          "commit": {
+            "abbreviatedOid": "40fd387"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "nice!  A couple of comments inlined.",
+          "createdAt": "2022-10-12T13:09:53Z",
+          "updatedAt": "2022-10-12T13:17:35Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "This bit should be moved to the bottom of the Terminology section.",
+              "createdAt": "2022-10-12T13:09:54Z",
+              "updatedAt": "2022-10-12T13:17:35Z"
+            },
+            {
+              "originalPosition": 75,
+              "body": "ASCII can be automatically rendered as SVG:\r\n\r\n```suggestion\r\n~~~ aasvg\r\n```",
+              "createdAt": "2022-10-12T13:11:24Z",
+              "updatedAt": "2022-10-12T13:17:35Z"
+            },
+            {
+              "originalPosition": 21,
+              "body": "since KAK is a AK and AK is defined as belonging to the RoT, I guess the RoT is also supposed to attest to the quality and security (integrity, secrecy) of the IK.",
+              "createdAt": "2022-10-12T13:14:47Z",
+              "updatedAt": "2022-10-12T13:17:35Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIIKzuM5D5bVP",
+          "commit": {
+            "abbreviatedOid": "40fd387"
+          },
+          "author": "ionut-arm",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Thank you! A few comments below",
+          "createdAt": "2022-10-12T13:45:53Z",
+          "updatedAt": "2022-10-12T13:55:38Z",
+          "comments": [
+            {
+              "originalPosition": 41,
+              "body": "Do we need a link here to the RATS draft?",
+              "createdAt": "2022-10-12T13:45:53Z",
+              "updatedAt": "2022-10-12T13:55:39Z"
+            },
+            {
+              "originalPosition": 128,
+              "body": "```suggestion\r\nkey of the IK (skT). How this proof-of-possession of the private key is accomplished\r\ndepends on the details of the usage protocol and is outside the scope of this specification.\r\n```",
+              "createdAt": "2022-10-12T13:50:44Z",
+              "updatedAt": "2022-10-12T13:55:39Z"
+            },
+            {
+              "originalPosition": 130,
+              "body": "```suggestion\r\nThe Recipient of the CAB and the proof-of-possession data (such as a digital signature)\r\n```",
+              "createdAt": "2022-10-12T13:51:16Z",
+              "updatedAt": "2022-10-12T13:55:39Z"
+            },
+            {
+              "originalPosition": 118,
+              "body": "Regarding the freshness - do we want to convey the option of \"PAT generated at initialisation and then cached\", where only the KAT includes the freshness? Also, I don't think it's specified that the RP is the one providing the nonce, but perhaps that can be assumed",
+              "createdAt": "2022-10-12T13:53:00Z",
+              "updatedAt": "2022-10-12T13:55:39Z"
+            },
+            {
+              "originalPosition": 140,
+              "body": "Do we also need to specify the replay check for the KAT?",
+              "createdAt": "2022-10-12T13:53:27Z",
+              "updatedAt": "2022-10-12T13:55:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIIKzuM5D6Q60",
+          "commit": {
+            "abbreviatedOid": "40fd387"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-12T15:50:08Z",
+          "updatedAt": "2022-10-12T15:50:08Z",
+          "comments": [
+            {
+              "originalPosition": 118,
+              "body": "@ionut-arm, do you think we could convert this into an issue to be handled subsequently and merge as-is?",
+              "createdAt": "2022-10-12T15:50:08Z",
+              "updatedAt": "2022-10-12T15:50:08Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIIKzuM5D6REo",
+          "commit": {
+            "abbreviatedOid": "fe6060d"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2022-10-12T15:50:34Z",
+          "updatedAt": "2022-10-12T15:50:34Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIIKzuM5D6UCU",
+          "commit": {
+            "abbreviatedOid": "40fd387"
+          },
+          "author": "ionut-arm",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-12T15:58:22Z",
+          "updatedAt": "2022-10-12T15:58:22Z",
+          "comments": [
+            {
+              "originalPosition": 118,
+              "body": "Sure!",
+              "createdAt": "2022-10-12T15:58:22Z",
+              "updatedAt": "2022-10-12T15:58:22Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
