@@ -3,9 +3,8 @@ v: 3
 
 title: "Key Attestation Token"
 abbrev: "KAT"
-docname: draft-bft-rats-kat-latest
-category: info
-consensus: true
+docname: draft-fossati-rats-kat-latest
+category: standards
 submissionType: IETF
 
 ipr: trust200902
@@ -31,6 +30,7 @@ author:
 normative:
   I-D.tschofenig-rats-psa-token: psa-token
   I-D.ietf-rats-eat: eat
+  I-D.fossati-tls-attestation:
   I-D.frost-rats-eat-collection: eat-coll
   RFC8610: cddl
   RFC8747: cwt-pop
@@ -119,22 +119,38 @@ in {{Section 8 of -cbor}} and {{Appendix G of -cddl}}.
 
 # Architecture
 
-In an architecture for key attestation there are three or more parties communicating with
-each other. From a key attestation point of view, there are the Key Attestation Service,
-the Presenter and the Recipient. Additional parties are added when considering attestation-
-related entities.
+Key attestation is an extension to the attestation functionality described in {{-rats-arch}}. 
+We describe this conceptually by splitting the internals of the attester into a two parts, 
+platform attestation and key attestation. This is shown in {{fig-arch}}. These are logical
+roles and implementations may combine them into a single physical entity. 
+
+Security-sensitive functionality, like the attestation functionality, has to be placed into
+the trusted computing base. Since the trusted computing base itself may support different 
+isolation layers, the design allows platform attestation to be separated from key attestation
+whereby platform attestation requires is more privileged than the key attestation code.
+Cryptographic services, used by key attestation and by platform attestation, are separated
+although not shown in the figure.
+
+The protocol used for communication between the Presenter and the Recipient is referred as 
+usage protocol. The usage protocol is outside the scope of this specification, needs to
+support proof-of-possession of the private key (explained further below). An example
+usage protocol is TLS with the extension defined in {{I-D.fossati-tls-attestation}}.
 
 ~~~aasvg
- +----------------------------------+
- | Attester                         |
- |                                  |
- | +-------------+  +-------------+ |
- | | Key         |  | Platform    | |
- | | Attestation |  | Attestation | |
- | | Service     |  | Service     | |
- | +-------------+  +-------------+ |
- +----------------------------------+
-       ^
+ +----------------------------------+ .
+ | Attester                         | .
+ |                                  | .
+ | +-------------+  +-------------+ | .
+ | | Key         |  | Platform    | | .
+ | | Attestation |  | Attestation | | .
+ | | Service(KAS)|  | Service     | | .
+ | +-------------+  +-------------+ | .
+ +----------------------------------+ .
+       ^                              .
+       |                              .
+       |       Trusted Computing Base .
+.......|...............................
+       |
        |
        v
  +-----------------+                 +-----------------+
@@ -145,49 +161,63 @@ related entities.
 ~~~
 {: #fig-arch title="Architecture"}
 
-The Presenter generates the IK, which contains a public key (pkT) and a private key (skT), for example
-using the following API call:
+The Presenter triggers the generation of the IK. The IK
+consists of a public key (pkT) and a private key (skT).
+The Presenter may, for example, use the following API call
+to trigger the generation of the key pair for a given 
+algorithm and to obtain a key handle (key_id).
 
 ~~~~
 key_id = GenerateKeyPair(alg_id)
 ~~~~
 
-The private key is created and stored such that it is only accessible to the
-KAS rather than to the Presenter.
+The private key is created and stored such that it is only
+accessible to the KAS rather than to the Presenter.
 
 Next, the KAS needs to trigger the creation of the Platform
-Attestation Token (PAT) by the Platform Attestation Service component. The PAT needs
-to be linked to the Key Attestation Token (KAT). The Key Attestation Token (KAT) includes
-the public key of the IK (pkT) and is then signed with the Key Attestation Key (KAK).
+Attestation Token (PAT) by the Platform Attestation Service.
+The PAT needs to be linked to the Key Attestation Token (KAT)
+and this linkage can occur in a number of ways. One approach
+is described in this specification in {{bundle}}. The Key 
+Attestation Token (KAT) includes the public key of the IK 
+(pkT) and is then signed with the Key Attestation Key (KAK).
 
-To ensure freshness of the PAT and the KAT a nonce is used, as suggested by the RATS
-architecture {{-rats-arch}}. Here is the symbolic API call to request a KAT and a PAT, which
+To ensure freshness of the PAT and the KAT a nonce is used,
+as suggested by the RATS architecture {{-rats-arch}}. Here
+is the symbolic API call to request a KAT and a PAT, which
 are concatinated together as the CAB.
 
 ~~~~
 cab = createCAB(key_id, nonce)
 ~~~~
 
-Once the CAB has been sent by the Presenter to the Recipient, the Presenter has to
-demonstrate possession of the private key. The signature operation uses the private
-key of the IK (skT). How this proof-of-possession of the private key is accomplished
-depends on the details of the usage protocol and is outside the scope of this specification.
+Once the CAB has been sent by the Presenter to the Recipient,
+the Presenter has to demonstrate possession of the private key.
+The signature operation uses the private key of the IK (skT).
+How this proof-of-possession of the private key is accomplished
+depends on the details of the usage protocol and is outside the
+scope of this specification.
 
-The Recipient of the CAB and the proof-of-possession data (such as a digital signature)
-first extracts the PAT and the KAT. The PAT and the KAT may need to be
-conveyed to a Verifier. If the PAT is in the form of attestation results the checks can
-be performed locally at the Recipient, whereby the following checks are made:
+The Recipient of the CAB and the proof-of-possession data (such
+as a digital signature) first extracts the PAT and the KAT. The
+PAT and the KAT may need to be conveyed to a Verifier. If the 
+PAT is in the form of attestation results the checks can be 
+performed locally at the Recipient, whereby the following checks
+are made:
 
-- The signature protecting the PAT MUST pass verification when using available trust anchor(s).
-- The PAT MUST be checked for replays, which can be checked by comparing the nonce included
-  in one of the claims and matching it against the nonce provided to the attester.
-- The claims in the PAT MUST be matched against stored reference values.
+- The signature protecting the PAT MUST pass verification when 
+using available trust anchor(s).
+- The PAT MUST be checked for replays, which can be checked by 
+comparing the nonce included in one of the claims and matching
+it against the nonce provided to the attester.
+- The claims in the PAT MUST be matched against stored reference
+values.
 - The signature protecting the KAT MUST pass verification.
-- The KAT MUST be checked for replays using the nonce included in the KAT definition (see
-{{fig-kat-cddl}}).
+- The KAT MUST be checked for replays using the nonce included in
+the KAT definition (see {{fig-kat-cddl}}).
 
-Once all these steps are completed, the verifier produces the attestation result and
-includes (if needed) the IK public key (pkT).
+Once all these steps are completed, the verifier produces the 
+attestation result and includes (if needed) the IK public key (pkT).
 
 
 # Key Attestation Token Format
@@ -202,7 +232,7 @@ The KAT utilizes the proof-of-possession functionality defined in
 ~~~
 {: #fig-kat-cddl artwork-align="left"  title="KAT Definition"}
 
-## KAT Bundle
+## KAT-PAT Bundle {#bundle}
 
 {{-eat-coll}}
 
@@ -210,6 +240,8 @@ The KAT utilizes the proof-of-possession functionality defined in
 {::include cddl/eat-collection.cddl}
 ~~~
 {: #fig-kat-bundle-cddl artwork-align="left"  title="KAT Bundle Definition"}
+
+TBD: Describe linkage technique between KAT and PAT.
 
 # Examples {#examples}
 
