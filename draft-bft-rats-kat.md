@@ -4,7 +4,7 @@ v: 3
 title: "Key Attestation Token"
 abbrev: "KAT"
 docname: draft-fossati-rats-kat-latest
-category: standards
+category: std
 submissionType: IETF
 
 ipr: trust200902
