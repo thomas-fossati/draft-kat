@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-10-13T00:53:53.550545+00:00",
+  "timestamp": "2022-10-16T00:55:48.310814+00:00",
   "repo": "thomas-fossati/draft-kat",
   "labels": [
     {
@@ -243,7 +243,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2022-10-12T12:48:35Z",
-      "updatedAt": "2022-10-12T22:30:30Z",
+      "updatedAt": "2022-10-13T10:08:34Z",
       "baseRepository": "thomas-fossati/draft-kat",
       "baseRefName": "main",
       "baseRefOid": "d0b23e6bfdcb89aa4a9a16c105f6b3d57581a803",
@@ -384,6 +384,211 @@
               "body": "Sure!",
               "createdAt": "2022-10-12T15:58:22Z",
               "updatedAt": "2022-10-12T15:58:22Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "id": "PR_kwDOIIKzuM5Av3_A",
+      "title": "Updated architecture description",
+      "url": "https://github.com/thomas-fossati/draft-kat/pull/9",
+      "state": "OPEN",
+      "author": "hannestschofenig",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-10-13T15:37:51Z",
+      "updatedAt": "2022-10-14T10:59:07Z",
+      "baseRepository": "thomas-fossati/draft-kat",
+      "baseRefName": "main",
+      "baseRefOid": "4783abad4b14894842788f6171ec1d32cc8e5bcc",
+      "headRepository": "hannestschofenig/draft-kat",
+      "headRefName": "patch-3",
+      "headRefOid": "b0f001a7b33aa69511a5b79d9d5996c87d77a6c4",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "OWNER",
+          "body": "The CI pipeline is broken:\r\n\r\n```\r\ndraft-bft-rats-kat.md contains trailing whitespace\r\n*** Run 'make fix-lint' to automatically fix some errors\r\n```\r\nand\r\n```\r\ndraft-bft-rats-kat.md does not contain its own name (draft-bft-rats-kat-latest)\r\n*** Correct the name of drafts in docname or similar fields\r\n```",
+          "createdAt": "2022-10-13T17:32:35Z",
+          "updatedAt": "2022-10-13T17:32:35Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIIKzuM5EBYg3",
+          "commit": {
+            "abbreviatedOid": "b0f001a"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "great stuff.  my usual set of assorted editorial comments inlined.",
+          "createdAt": "2022-10-13T17:19:38Z",
+          "updatedAt": "2022-10-13T17:29:45Z",
+          "comments": [
+            {
+              "originalPosition": 62,
+              "body": "```suggestion\r\n | | Service     |  | Service     | | .\r\n```",
+              "createdAt": "2022-10-13T17:19:38Z",
+              "updatedAt": "2022-10-13T17:29:45Z"
+            },
+            {
+              "originalPosition": 33,
+              "body": "```suggestion\r\nSecurity-sensitive functionality, like attestation, has to be placed into\r\n```",
+              "createdAt": "2022-10-13T17:20:02Z",
+              "updatedAt": "2022-10-13T17:29:45Z"
+            },
+            {
+              "originalPosition": 36,
+              "body": "```suggestion\r\nwhereby platform attestation requires more privilege than the key attestation code.\r\n```",
+              "createdAt": "2022-10-13T17:20:45Z",
+              "updatedAt": "2022-10-13T17:29:45Z"
+            },
+            {
+              "originalPosition": 41,
+              "body": "```suggestion\r\nusage protocol. The usage protocol, which is outside the scope of this specification, needs to\r\n```",
+              "createdAt": "2022-10-13T17:21:39Z",
+              "updatedAt": "2022-10-13T17:29:45Z"
+            },
+            {
+              "originalPosition": 80,
+              "body": "just a curiosity, what does `T` means in `[ps]kT` ?",
+              "createdAt": "2022-10-13T17:23:28Z",
+              "updatedAt": "2022-10-13T17:29:45Z"
+            },
+            {
+              "originalPosition": 147,
+              "body": "IIUC, the bundling method we describe reuses the PAT across multiple KATs, so the session freshness for the \"usage protocol\" is to be checked in the KAT only.\r\n\r\nThis step should be \"PAT and KAT chaining is checked\"",
+              "createdAt": "2022-10-13T17:28:12Z",
+              "updatedAt": "2022-10-13T17:29:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIIKzuM5EFMm7",
+          "commit": {
+            "abbreviatedOid": "b0f001a"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-14T10:37:42Z",
+          "updatedAt": "2022-10-14T10:37:42Z",
+          "comments": [
+            {
+              "originalPosition": 2,
+              "body": "The Name Key Attestation itself is mis-leading",
+              "createdAt": "2022-10-14T10:37:42Z",
+              "updatedAt": "2022-10-14T10:37:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIIKzuM5EFNCS",
+          "commit": {
+            "abbreviatedOid": "b0f001a"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-14T10:39:18Z",
+          "updatedAt": "2022-10-14T10:39:19Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "It should be better termed as \"Augmented Key Attestation\" or \"Enhanced Key Attestation\"",
+              "createdAt": "2022-10-14T10:39:18Z",
+              "updatedAt": "2022-10-14T10:39:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIIKzuM5EFRIh",
+          "commit": {
+            "abbreviatedOid": "b0f001a"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-14T10:54:29Z",
+          "updatedAt": "2022-10-14T10:54:29Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "> It should be better termed as \"Augmented Key Attestation\" or \"Enhanced Key Attestation\"\r\n\r\nnot sure, we are not enhancing or augmenting key attestation",
+              "createdAt": "2022-10-14T10:54:29Z",
+              "updatedAt": "2022-10-14T10:55:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIIKzuM5EFRYa",
+          "commit": {
+            "abbreviatedOid": "b0f001a"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-14T10:55:24Z",
+          "updatedAt": "2022-10-14T10:55:24Z",
+          "comments": [
+            {
+              "originalPosition": 2,
+              "body": "> The Name Key Attestation itself is mis-leading\r\n\r\nin what sense?\r\n",
+              "createdAt": "2022-10-14T10:55:24Z",
+              "updatedAt": "2022-10-14T10:55:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIIKzuM5EFRkz",
+          "commit": {
+            "abbreviatedOid": "b0f001a"
+          },
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-14T10:55:59Z",
+          "updatedAt": "2022-10-14T10:55:59Z",
+          "comments": [
+            {
+              "originalPosition": 2,
+              "body": "We are not documenting Key Attestation here!",
+              "createdAt": "2022-10-14T10:55:59Z",
+              "updatedAt": "2022-10-14T10:56:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIIKzuM5EFSbl",
+          "commit": {
+            "abbreviatedOid": "b0f001a"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-14T10:59:06Z",
+          "updatedAt": "2022-10-14T10:59:07Z",
+          "comments": [
+            {
+              "originalPosition": 2,
+              "body": "\ud83d\ude15 ",
+              "createdAt": "2022-10-14T10:59:06Z",
+              "updatedAt": "2022-10-14T10:59:07Z"
             }
           ]
         }
