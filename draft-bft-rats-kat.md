@@ -132,7 +132,7 @@ Cryptographic services, used by key attestation and by platform attestation, are
 although not shown in the figure.
 
 The protocol used for communication between the Presenter and the Recipient is referred as 
-usage protocol. The usage protocol is outside the scope of this specification, needs to
+usage protocol. The usage protocol, which is outside the scope of this specification, needs to
 support proof-of-possession of the private key (explained further below). An example
 usage protocol is TLS with the extension defined in {{I-D.fossati-tls-attestation}}.
 
