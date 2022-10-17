@@ -143,7 +143,7 @@ usage protocol is TLS with the extension defined in {{I-D.fossati-tls-attestatio
  | +-------------+  +-------------+ | .
  | | Key         |  | Platform    | | .
  | | Attestation |  | Attestation | | .
- | | Service(KAS)|  | Service     | | .
+ | | Service     |  | Service     | | .
  | +-------------+  +-------------+ | .
  +----------------------------------+ .
        ^                              .
