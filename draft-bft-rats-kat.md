@@ -207,9 +207,9 @@ are made:
 
 - The signature protecting the PAT MUST pass verification when 
 using available trust anchor(s).
-- The PAT MUST be checked for replays, which can be checked by 
-comparing the nonce included in one of the claims and matching
-it against the nonce provided to the attester.
+- The chaining of PAT and KAT MUST be verified. The detailed
+verification procedure depends on the chaining mechanism
+utilized.
 - The claims in the PAT MUST be matched against stored reference
 values.
 - The signature protecting the KAT MUST pass verification.
