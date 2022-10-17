@@ -124,7 +124,7 @@ We describe this conceptually by splitting the internals of the attester into a 
 platform attestation and key attestation. This is shown in {{fig-arch}}. These are logical
 roles and implementations may combine them into a single physical entity. 
 
-Security-sensitive functionality, like the attestation functionality, has to be placed into
+Security-sensitive functionality, like attestation, has to be placed into
 the trusted computing base. Since the trusted computing base itself may support different 
 isolation layers, the design allows platform attestation to be separated from key attestation
 whereby platform attestation requires is more privileged than the key attestation code.
