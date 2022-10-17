@@ -127,7 +127,7 @@ roles and implementations may combine them into a single physical entity.
 Security-sensitive functionality, like attestation, has to be placed into
 the trusted computing base. Since the trusted computing base itself may support different 
 isolation layers, the design allows platform attestation to be separated from key attestation
-whereby platform attestation requires is more privileged than the key attestation code.
+whereby platform attestation requires more privilege than the key attestation code.
 Cryptographic services, used by key attestation and by platform attestation, are separated
 although not shown in the figure.
 
