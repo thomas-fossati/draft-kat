@@ -3,7 +3,7 @@ v: 3
 
 title: "Key Attestation Token"
 abbrev: "KAT"
-docname: draft-fossati-rats-kat-latest
+docname: draft-bft-rats-kat-latest
 category: std
 submissionType: IETF
 
