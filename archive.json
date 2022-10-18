@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-10-16T00:55:48.310814+00:00",
+  "timestamp": "2022-10-18T00:55:05.314956+00:00",
   "repo": "thomas-fossati/draft-kat",
   "labels": [
     {
@@ -401,13 +401,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2022-10-13T15:37:51Z",
-      "updatedAt": "2022-10-14T10:59:07Z",
+      "updatedAt": "2022-10-17T11:07:57Z",
       "baseRepository": "thomas-fossati/draft-kat",
       "baseRefName": "main",
       "baseRefOid": "4783abad4b14894842788f6171ec1d32cc8e5bcc",
       "headRepository": "hannestschofenig/draft-kat",
       "headRefName": "patch-3",
-      "headRefOid": "b0f001a7b33aa69511a5b79d9d5996c87d77a6c4",
+      "headRefOid": "73314c7ed1c8af2704dcdd6cb65e04ee5efbf09c",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -589,6 +589,26 @@
               "body": "\ud83d\ude15 ",
               "createdAt": "2022-10-14T10:59:06Z",
               "updatedAt": "2022-10-14T10:59:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIIKzuM5EL2U1",
+          "commit": {
+            "abbreviatedOid": "b0f001a"
+          },
+          "author": "hannestschofenig",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-17T11:05:17Z",
+          "updatedAt": "2022-10-17T11:05:17Z",
+          "comments": [
+            {
+              "originalPosition": 80,
+              "body": "The text was initially in the TLS attestation draft and there it was called TLS Identity Key. The T was related to the TLS part. Now, we are only talking about the Identity Key anymore and hence the abbreviation is less useful....",
+              "createdAt": "2022-10-17T11:05:17Z",
+              "updatedAt": "2022-10-17T11:05:17Z"
             }
           ]
         }
