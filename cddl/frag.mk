@@ -37,4 +37,4 @@ PSA_TOKEN_FRAGS := start-psa-token.cddl
 PSA_TOKEN_FRAGS += psa-token.cddl
 PSA_TOKEN_FRAGS += cose.cddl
 
-PSA_TOKEN_EXAMPLES :=
+PSA_TOKEN_EXAMPLES := $(wildcard examples/pat-*.diag)

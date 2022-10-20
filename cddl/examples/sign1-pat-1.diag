@@ -1,0 +1,14 @@
+[
+    / protected / h'A10126',
+    / unprotected / {},
+    / payload (PAT Claims-Set) / <<
+{
+    / eat_nonce / 10: h'5ca3750daf829c30c20797eddb7949b1fd028c5408f2
+dd8650ad732327e3fb64'
+    / further platform specific claims /
+}
+    >>,
+    / signature / h'F9F41CAB7F1B7E2C47F67DACA8BB49E3119B7BAE77AEC6C8
+9162713E0CC6D0E7327831E67F32841A56F50D131FA83979AE064E76E70DC75C070B
+6D991AEC08AD'
+]
