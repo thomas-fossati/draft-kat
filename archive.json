@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-10-18T00:55:05.314956+00:00",
+  "timestamp": "2022-10-20T00:49:27.292456+00:00",
   "repo": "thomas-fossati/draft-kat",
   "labels": [
     {
@@ -401,13 +401,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2022-10-13T15:37:51Z",
-      "updatedAt": "2022-10-17T11:07:57Z",
+      "updatedAt": "2022-10-18T07:13:39Z",
       "baseRepository": "thomas-fossati/draft-kat",
       "baseRefName": "main",
       "baseRefOid": "4783abad4b14894842788f6171ec1d32cc8e5bcc",
       "headRepository": "hannestschofenig/draft-kat",
       "headRefName": "patch-3",
-      "headRefOid": "73314c7ed1c8af2704dcdd6cb65e04ee5efbf09c",
+      "headRefOid": "43e7014a0f59ce321133f93af5c9e3b09f917ba1",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
