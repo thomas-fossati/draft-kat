@@ -119,19 +119,19 @@ in {{Section 8 of -cbor}} and {{Appendix G of -cddl}}.
 
 # Architecture
 
-Key attestation is an extension to the attestation functionality described in {{-rats-arch}}. 
-We describe this conceptually by splitting the internals of the attester into a two parts, 
+Key attestation is an extension to the attestation functionality described in {{-rats-arch}}.
+We describe this conceptually by splitting the internals of the attester into a two parts,
 platform attestation and key attestation. This is shown in {{fig-arch}}. These are logical
-roles and implementations may combine them into a single physical entity. 
+roles and implementations may combine them into a single physical entity.
 
 Security-sensitive functionality, like attestation, has to be placed into
-the trusted computing base. Since the trusted computing base itself may support different 
+the trusted computing base. Since the trusted computing base itself may support different
 isolation layers, the design allows platform attestation to be separated from key attestation
 whereby platform attestation requires more privilege than the key attestation code.
 Cryptographic services, used by key attestation and by platform attestation, are separated
 although not shown in the figure.
 
-The protocol used for communication between the Presenter and the Recipient is referred as 
+The protocol used for communication between the Presenter and the Recipient is referred as
 usage protocol. The usage protocol, which is outside the scope of this specification, needs to
 support proof-of-possession of the private key (explained further below). An example
 usage protocol is TLS with the extension defined in {{I-D.fossati-tls-attestation}}.
@@ -164,7 +164,7 @@ usage protocol is TLS with the extension defined in {{I-D.fossati-tls-attestatio
 The Presenter triggers the generation of the IK. The IK
 consists of a public key (pkT) and a private key (skT).
 The Presenter may, for example, use the following API call
-to trigger the generation of the key pair for a given 
+to trigger the generation of the key pair for a given
 algorithm and to obtain a key handle (key_id).
 
 ~~~~
@@ -178,8 +178,8 @@ Next, the KAS needs to trigger the creation of the Platform
 Attestation Token (PAT) by the Platform Attestation Service.
 The PAT needs to be linked to the Key Attestation Token (KAT)
 and this linkage can occur in a number of ways. One approach
-is described in this specification in {{bundle}}. The Key 
-Attestation Token (KAT) includes the public key of the IK 
+is described in this specification in {{bundle}}. The Key
+Attestation Token (KAT) includes the public key of the IK
 (pkT) and is then signed with the Key Attestation Key (KAK).
 
 To ensure freshness of the PAT and the KAT a nonce is used,
@@ -200,12 +200,12 @@ scope of this specification.
 
 The Recipient of the CAB and the proof-of-possession data (such
 as a digital signature) first extracts the PAT and the KAT. The
-PAT and the KAT may need to be conveyed to a Verifier. If the 
-PAT is in the form of attestation results the checks can be 
+PAT and the KAT may need to be conveyed to a Verifier. If the
+PAT is in the form of attestation results the checks can be
 performed locally at the Recipient, whereby the following checks
 are made:
 
-- The signature protecting the PAT MUST pass verification when 
+- The signature protecting the PAT MUST pass verification when
 using available trust anchor(s).
 - The chaining of PAT and KAT MUST be verified. The detailed
 verification procedure depends on the chaining mechanism
@@ -216,7 +216,7 @@ values.
 - The KAT MUST be checked for replays using the nonce included in
 the KAT definition (see {{fig-kat-cddl}}).
 
-Once all these steps are completed, the verifier produces the 
+Once all these steps are completed, the verifier produces the
 attestation result and includes (if needed) the IK public key (pkT).
 
 
