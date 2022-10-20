@@ -28,9 +28,7 @@ author:
    email: hannes.tschofenig@arm.com
 
 normative:
-  I-D.tschofenig-rats-psa-token: psa-token
   I-D.ietf-rats-eat: eat
-  I-D.fossati-tls-attestation:
   I-D.frost-rats-eat-collection: eat-coll
   RFC8610: cddl
   RFC8747: cwt-pop
@@ -44,6 +42,8 @@ normative:
 
 informative:
   I-D.ietf-rats-architecture: rats-arch
+  I-D.tschofenig-rats-psa-token: psa-token
+  I-D.fossati-tls-attestation:
 
 --- abstract
 
