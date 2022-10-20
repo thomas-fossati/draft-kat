@@ -458,15 +458,6 @@ Table of Contents
 
 9.1.  Normative References
 
-   [I-D.fossati-tls-attestation]
-              Tschofenig, H., Fossati, T., Howard, P., Mihalcea, I., and
-              Y. Deshpande, "Using Attestation in Transport Layer
-              Security (TLS) and Datagram Transport Layer Security
-              (DTLS)", Work in Progress, Internet-Draft, draft-fossati-
-              tls-attestation-01, 26 August 2022,
-              <https://datatracker.ietf.org/doc/html/draft-fossati-tls-
-              attestation-01>.
-
    [I-D.frost-rats-eat-collection]
               Frost, S., "Entity Attestation Token (EAT) Collection
               Type", Work in Progress, Internet-Draft, draft-frost-rats-
@@ -480,14 +471,6 @@ Table of Contents
               Progress, Internet-Draft, draft-ietf-rats-eat-16, 9
               October 2022, <https://datatracker.ietf.org/doc/html/
               draft-ietf-rats-eat-16>.
-
-   [I-D.tschofenig-rats-psa-token]
-              Tschofenig, H., Frost, S., Brossard, M., Shaw, A. L., and
-              T. Fossati, "Arm's Platform Security Architecture (PSA)
-              Attestation Token", Work in Progress, Internet-Draft,
-              draft-tschofenig-rats-psa-token-10, 6 September 2022,
-              <https://datatracker.ietf.org/doc/html/draft-tschofenig-
-              rats-psa-token-10>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -526,6 +509,15 @@ Table of Contents
 
 9.2.  Informative References
 
+   [I-D.fossati-tls-attestation]
+              Tschofenig, H., Fossati, T., Howard, P., Mihalcea, I., and
+              Y. Deshpande, "Using Attestation in Transport Layer
+              Security (TLS) and Datagram Transport Layer Security
+              (DTLS)", Work in Progress, Internet-Draft, draft-fossati-
+              tls-attestation-01, 26 August 2022,
+              <https://datatracker.ietf.org/doc/html/draft-fossati-tls-
+              attestation-01>.
+
    [I-D.ietf-rats-architecture]
               Birkholz, H., Thaler, D., Richardson, M., Smith, N., and
               W. Pan, "Remote Attestation Procedures Architecture", Work
@@ -533,6 +525,14 @@ Table of Contents
               22, 28 September 2022,
               <https://datatracker.ietf.org/doc/html/draft-ietf-rats-
               architecture-22>.
+
+   [I-D.tschofenig-rats-psa-token]
+              Tschofenig, H., Frost, S., Brossard, M., Shaw, A. L., and
+              T. Fossati, "Arm's Platform Security Architecture (PSA)
+              Attestation Token", Work in Progress, Internet-Draft,
+              draft-tschofenig-rats-psa-token-10, 6 September 2022,
+              <https://datatracker.ietf.org/doc/html/draft-tschofenig-
+              rats-psa-token-10>.
 
 Appendix A.  Amalgamated CDDL
 
