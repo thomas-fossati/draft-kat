@@ -4,17 +4,18 @@
 
 Remote ATtestation ProcedureS                                M. Brossard
 Internet-Draft                                                T. Fossati
-Intended status: Informational                             H. Tschofenig
-Expires: 15 April 2023                                               arm
-                                                         12 October 2022
+Intended status: Standards Track                           H. Tschofenig
+Expires: 24 April 2023                                               arm
+                                                         21 October 2022
 
 
-                         Key Attestation Token
+                   An EAT-based Key Attestation Token
                        draft-bft-rats-kat-latest
 
 Abstract
 
-   This document defines an evidence format for key attestation.
+   This document defines an evidence format for key attestation based on
+   the Entity Attestation Token (EAT) format.
 
 Discussion Venues
 
@@ -42,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 April 2023.
+   This Internet-Draft will expire on 24 April 2023.
 
 Copyright Notice
 
@@ -65,22 +66,102 @@ Table of Contents
    3.  Architecture
    4.  Key Attestation Token Format
      4.1.  Proof-of-Possession
-     4.2.  KAT Bundle
-   5.  Examples
-   6.  Security Considerations
-   7.  IANA Considerations
-   8.  References
-     8.1.  Normative References
-     8.2.  Informative References
+   5.  Platform Attestation Token Format
+     5.1.  KAT-PAT Bundle
+       5.1.1.  KAT-PAT linkage
+   6.  Examples
+   7.  Security Considerations
+   8.  IANA Considerations
+   9.  References
+     9.1.  Normative References
+     9.2.  Informative References
    Appendix A.  Amalgamated CDDL
    Acknowledgments
    Authors' Addresses
 
 1.  Introduction
 
-   This document defines an evidence format for key attestation.
+   This document defines an evidence format for key attestation based on
+   EAT [I-D.ietf-rats-eat].
 
 2.  Terminology
+
+   The following terms are used in this document:
+
+   Root of Trust (RoT):
+      A set of software and/or hardware components that need to be
+      trusted to act as a security foundation required for accomplishing
+      the security goals.  In our case, the RoT is expected to offer the
+      functionality for attesting to the state of the platform and
+      indirectly also to attest the integrity of the IK (public as well
+      as private key) and the confidentiality IK private key.
+
+   Attestation Key (AK):
+      Cryptographic key belonging to the RoT that is only used to sign
+      attestation tokens.
+
+   Platform Attestation Key (PAK):
+      An AK used specifically for signing attestation tokens relating to
+      the state of the platform.
+
+   Key Attestation Key (KAK):
+      An AK used specifically for signing KATs.  In some systems only a
+      single AK is used.  In that case the AK is used as a PAK and a
+      KAK.
+
+   Identity Key (IK):
+      The IK consists of a private and a public key.  The private key is
+      used by the usage protocol.  The public key is included in the Key
+      Attestation Token.
+
+   Usage Protocol:
+      A (security) protocol that allows demonstrating possession of the
+      private key.
+
+   Attestation Token (AT):
+      A collection of claims that a RoT assembles (and signs) with the
+      purpose of informing - in a verifiable way - relying parties about
+      the identity and state of the platform.  Essentially a type of
+      Evidence as per the RATS architecture terminology
+      [I-D.ietf-rats-architecture].
+
+   Platform Attestation Token (PAT):
+      An AT containing claims relating to the security state of the
+      platform, including software constituting the platform trusted
+      computing base (TCB).  The process of generating a PAT typically
+      involves gathering data during measured boot.
+
+   Key Attestation Token (KAT):
+      An AT containing a claim with a proof-of-possession (PoP) key.
+      The KAT may also contain other claims, such as those indicating
+      its validity.  The KAT is signed by the KAK.  The key attestation
+      service, which is part of the platform root of trust (RoT),
+      conceptually acts as a local certification authority since the KAT
+      behaves like a certificate.
+
+   Combined Attestation Bundle (CAB):
+      A structure used to bundle a KAT and a PAT together for transport
+      in the usage protocol.  If the KAT already includes a PAT, in form
+      of a nested token, then it already corresponds to a CAB.
+
+   Presenter:
+      Party that proves possession of a private key to a recipient of a
+      KAT.
+
+   Recipient:
+      Party that receives the KAT containing the proof-of-possession key
+      information from the presenter.
+
+   Key Attestation Service (KAS):
+      The issuer that creates the KAT and bundles a KAT together with a
+      PAT in a CAB.
+
+   The reader is assumed to be familiar with the vocabulary and concepts
+   defined in [I-D.ietf-rats-architecture].
+
+   CDDL [RFC8610] [RFC9165] is used to describe the data formats and the
+   examples in Section 6 use CBOR diagnostic notation defined in
+   Section 8 of [STD94] and Appendix G of [RFC8610].
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
@@ -88,103 +169,58 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-   The following terms are used in this document:
-
-   *  Root of Trust (RoT): A set of software and/or hardware components
-      that need to be trusted to act as a security foundation required
-      for accomplishing the security goals.  In our case, the RoT is
-      expected to offer the functionality for attesting to the state of
-      the platform and indirectly also to attest the integrity of the IK
-      (public as well as private key) and the confidentiality IK private
-      key.
-
-   *  Attestation Key (AK): Cryptographic key belonging to the RoT that
-      is only used to sign attestation tokens.
-
-   *  Platform Attestation Key (PAK): An AK used specifically for
-      signing attestation tokens relating to the state of the platform.
-
-   *  Key Attestation Key (KAK): An AK used specifically for signing
-      KATs.  In some systems only a single AK is used.  In that case the
-      AK is used as a PAK and a KAK.
-
-   *  Identity Key (IK): The IK consists of a private and a public key.
-      The private key is used by the usage protocol.  The public key is
-      included in the Key Attestation Token.
-
-   *  Usage Protocol: A (security) protocol that allows demonstrating
-      possession of the private key.
-
-   *  Attestation Token (AT): A collection of claims that a RoT
-      assembles (and signs) with the purpose of informing - in a
-      verifiable way - relying parties about the identity and state of
-      the platform.  Essentially a type of Evidence as per the RATS
-      architecture terminology [I-D.ietf-rats-architecture].
-
-   *  Platform Attestation Token (PAT): An AT containing claims relating
-      to the security state of the platform, including software
-      constituting the platform trusted computing base (TCB).  The
-      process of generating a PAT typically involves gathering data
-      during measured boot.
-
-   *  Key Attestation Token (KAT): An AT containing a claim with a
-      proof-of-possession (PoP) key.  The KAT may also contain other
-      claims, such as those indicating its validity.  The KAT is signed
-      by the KAK.  The key attestation service, which is part of the
-      platform root of trust (RoT), conceptually acts as a local
-      certification authority since the KAT behaves like a certificate.
-
-   *  Combined Attestation Bundle (CAB): A structure used to bundle a
-      KAT and a PAT together for transport in the usage protocol.  If
-      the KAT already includes a PAT, in form of a nested token, then it
-      already corresponds to a CAB.
-
-   *  Presenter: Party that proves possession of a private key to a
-      recipient of a KAT.
-
-   *  Recipient: Party that receives the KAT containing the proof-of-
-      possession key information from the presenter.
-
-   *  Key Attestation Service (KAS): The issuer that creates the KAT and
-      bundles a KAT together with a PAT in a CAB.
-
-   The reader is assumed to be familiar with the vocabulary and concepts
-   defined in [I-D.ietf-rats-architecture].
-
-   CDDL [RFC8610] [RFC9165] is used to describe the data formats and the
-   examples in Section 5 use CBOR diagnostic notation defined in
-   Section 8 of [STD94] and Appendix G of [RFC8610].
-
 3.  Architecture
 
-   In an architecture for key attestation there are three or more
-   parties communicating with each other.  From a key attestation point
-   of view, there are the Key Attestation Service, the Presenter and the
-   Recipient.  Additional parties are added when considering
-   attestation- related entities.
+   Key attestation is an extension to the attestation functionality
+   described in [I-D.ietf-rats-architecture].  We describe this
+   conceptually by splitting the internals of the attester into a two
+   parts, platform attestation and key attestation.  This is shown in
+   Figure 1.  These are logical roles and implementations may combine
+   them into a single physical entity.
 
-    +----------------------------------+
-    | Attester                         |
-    |                                  |
-    | +-------------+  +-------------+ |
-    | | Key         |  | Platform    | |
-    | | Attestation |  | Attestation | |
-    | | Service     |  | Service     | |
-    | +-------------+  +-------------+ |
-    +----------------------------------+
-          ^
+   Security-sensitive functionality, like attestation, has to be placed
+   into the trusted computing base.  Since the trusted computing base
+   itself may support different isolation layers, the design allows
+   platform attestation to be separated from key attestation whereby
+   platform attestation requires more privilege than the key attestation
+   code.  Cryptographic services, used by key attestation and by
+   platform attestation, are separated although not shown in the figure.
+
+   The protocol used for communication between the Presenter and the
+   Recipient is referred as usage protocol.  The usage protocol, which
+   is outside the scope of this specification, needs to support proof-
+   of-possession of the private key (explained further below).  An
+   example usage protocol is TLS with the extension defined in
+   [I-D.fossati-tls-attestation].
+
+    +----------------------------------+ .
+    | Attester                         | .
+    |                                  | .
+    | +-------------+  +-------------+ | .
+    | | Key         |  | Platform    | | .
+    | | Attestation |  | Attestation | | .
+    | | Service     |  | Service     | | .
+    | +-------------+  +-------------+ | .
+    +----------------------------------+ .
+          ^                              .
+          |                              .
+          |       Trusted Computing Base .
+   .......|...............................
+          |
           |
           v
     +-----------------+                 +-----------------+
+    |                 | Usage Protocol  |                 |
+    |    Presenter    +---------------->|    Recipient    |
     |                 |                 |                 |
-    |   Presenter     | Usage Protocol  |   Recipient     |
-    |                 |---------------->|                 |
     +-----------------+                 +-----------------+
 
                            Figure 1: Architecture
 
-   The Presenter generates the IK, which contains a public key (pkT) and
-   a private key (skT), for example using the following API call:
+   The Presenter triggers the generation of the IK.  The IK consists of
+   a public key (pIK) and a private key (sIK).  The Presenter may, for
+   example, use the following API call to trigger the generation of the
+   key pair for a given algorithm and to obtain a key handle (key_id).
 
    key_id = GenerateKeyPair(alg_id)
 
@@ -192,10 +228,12 @@ Table of Contents
    to the KAS rather than to the Presenter.
 
    Next, the KAS needs to trigger the creation of the Platform
-   Attestation Token (PAT) by the Platform Attestation Service
-   component.  The PAT needs to be linked to the Key Attestation Token
-   (KAT).  The Key Attestation Token (KAT) includes the public key of
-   the IK (pkT) and is then signed with the Key Attestation Key (KAK).
+   Attestation Token (PAT) by the Platform Attestation Service.  The PAT
+   needs to be linked to the Key Attestation Token (KAT) and this
+   linkage can occur in a number of ways.  One approach is described in
+   this specification in Section 5.1.  The Key Attestation Token (KAT)
+   includes the public key of the IK (pIK) and is then signed with the
+   Key Attestation Key (KAK).
 
    To ensure freshness of the PAT and the KAT a nonce is used, as
    suggested by the RATS architecture [I-D.ietf-rats-architecture].
@@ -206,7 +244,7 @@ Table of Contents
 
    Once the CAB has been sent by the Presenter to the Recipient, the
    Presenter has to demonstrate possession of the private key.  The
-   signature operation uses the private key of the IK (skT).  How this
+   signature operation uses the private key of the IK (sIK).  How this
    proof-of-possession of the private key is accomplished depends on the
    details of the usage protocol and is outside the scope of this
    specification.
@@ -220,9 +258,8 @@ Table of Contents
    *  The signature protecting the PAT MUST pass verification when using
       available trust anchor(s).
 
-   *  The PAT MUST be checked for replays, which can be checked by
-      comparing the nonce included in one of the claims and matching it
-      against the nonce provided to the attester.
+   *  The chaining of PAT and KAT MUST be verified.  The detailed
+      verification procedure depends on the chaining mechanism utilized.
 
    *  The claims in the PAT MUST be matched against stored reference
       values.
@@ -233,14 +270,14 @@ Table of Contents
       the KAT definition (see Figure 2).
 
    Once all these steps are completed, the verifier produces the
-   attestation result and includes (if needed) the IK public key (pkT).
+   attestation result and includes (if needed) the IK public key (pIK).
 
 4.  Key Attestation Token Format
 
 4.1.  Proof-of-Possession
 
    The KAT utilizes the proof-of-possession functionality defined in
-   [RFC8747] to encode the public key of the IK (pkT).
+   [RFC8747] to encode the public key of the IK (pIK).
 
    kat = {
        &(eat_nonce: 10) => bstr .size (8..64)
@@ -256,23 +293,59 @@ Table of Contents
 
                           Figure 2: KAT Definition
 
-4.2.  KAT Bundle
+   The claims in the KAT are as follows:
 
-   [I-D.frost-rats-eat-collection]
+   *  eat_nonce: challenge from the relying party
+
+   *  cnf: the key confirmation [RFC8747] of the pIK, encoded as
+      COSE_Key [STD96]
+
+   *  kak-pub: the public part of the KAK (used for verification of the
+      KAT), encoded as COSE_Key
+
+5.  Platform Attestation Token Format
+
+   There are no strict requirements regarding the composition of the
+   platform attestation token's claims-set, except for the presence of
+   the eat_nonce claim used for binding (Section 5.1.1).
+
+   An example of PAT could be the PSA Token
+   [I-D.tschofenig-rats-psa-token].
+
+5.1.  KAT-PAT Bundle
+
+   The KAT and PAT tokens are combined in an EAT "collection"
+   [I-D.frost-rats-eat-collection] as shown in Figure 3.
 
    kat-bundle = {
-       &(eat_profile: 265) => "http://arm.com/kat/1.0.0"
+       &(eat_profile: 265) =>
+           "https://datatracker.ietf.org/doc/draft-bft-rats-kat",
        "kat" => COSE-Sign1-kat
-       "psa-token" => Tagged-COSE-psa-token
+       "pat" => EAT-CBOR-Token
    }
 
                       Figure 3: KAT Bundle Definition
 
-5.  Examples
+5.1.1.  KAT-PAT linkage
 
+   KAT and PAT are a form of layered attestation (Section 3.2 of
+   [I-D.ietf-rats-architecture]).  For the scheme to be secure, it is
+   crucial that their linkage is captured in their combined wire image.
+   The way this is achieved is by hashing the CBOR-encoded COSE_Key
+   corresponding to the KAK (i.e., the kak-pub claim in the KAT) and
+   using it to populate the eat_nonce claim in the PAT.  The signature
+   on the PAT seals the image of the used KAK and therefore the linkage
+   between the two layers.
+
+6.  Examples
+
+   [
+       / protected / h'A10126',
+       / unprotected / {},
+       / payload (KAT Claims-Set) / <<
    {
-       / nonce / 10: h'b91b03129222973c214e42bf31d6872a3ef2dbdda401fbd1
-   f725d48d6bf9c817',
+       / nonce / 10: h'B91B03129222973C214E42BF31D6872A3EF2DBDDA401FBD1
+   F725D48D6BF9C817',
        / kak-pub / 2500: {
            / kty /  1: 2, / EC2 /
            / crv / -1: 1, / P-256 /
@@ -292,20 +365,98 @@ Table of Contents
            }
        }
    }
+       >>,
+       / signature / h'56F50D131FA83979AE064E76E70DC75C070B6D991AEC08AD
+   F9F41CAB7F1B7E2C47F67DACA8BB49E3119B7BAE77AEC6C89162713E0CC6D0E73278
+   31E67F32841A'
+   ]
 
-                               Figure 4: KAT
+                      Figure 4: COSE Sign1 signed KAT
 
-6.  Security Considerations
+   [
+       / protected / h'A10126',
+       / unprotected / {},
+       / payload (PAT Claims-Set) / <<
+   {
+       / eat_nonce / 10: h'5ca3750daf829c30c20797eddb7949b1fd028c5408f2
+   dd8650ad732327e3fb64'
+       / further platform specific claims /
+   }
+       >>,
+       / signature / h'F9F41CAB7F1B7E2C47F67DACA8BB49E3119B7BAE77AEC6C8
+   9162713E0CC6D0E7327831E67F32841A56F50D131FA83979AE064E76E70DC75C070B
+   6D991AEC08AD'
+   ]
+
+                  Figure 5: COSE Sign1 signed minimal PAT
+
+   {
+       / eat_profile / 265:
+           'https://datatracker.ietf.org/doc/draft-bft-rats-kat-00',
+       "kat": <<
+   [
+       / protected / h'A10126',
+       / unprotected / {},
+       / payload (KAT Claims-Set) / <<
+   {
+       / nonce / 10: h'B91B03129222973C214E42BF31D6872A3EF2DBDDA401FBD1
+   F725D48D6BF9C817',
+       / kak-pub / 2500: {
+           / kty /  1: 2, / EC2 /
+           / crv / -1: 1, / P-256 /
+           / x /   -2: h'F0FFFA7BA35E76E44CA1F5446D327C8382A5A40E5F2974
+   5DF948346C7C88A5D3',
+           / y /   -3: h'7CB4C4873CBB6F097562F61D5280768CD2CFE35FBA97E9
+   97280DBAAAE3AF92FE'
+       },
+       / cnf / 8: {
+           / COSE_Key / 1: {
+               / kty /  1: 2, / EC2 /
+               / crv / -1: 1, / P-256 /
+               / x /   -2: h'D7CC072DE2205BDC1537A543D53C60A6ACB62ECCD8
+   90C7FA27C9E354089BBE13',
+               / y /   -3: h'F95E1D4B851A2CC80FFF87D8E23F22AFB725D535E5
+   15D020731E79A3B4E47120'
+           }
+       }
+   }
+       >>,
+       / signature / h'56F50D131FA83979AE064E76E70DC75C070B6D991AEC08AD
+   F9F41CAB7F1B7E2C47F67DACA8BB49E3119B7BAE77AEC6C89162713E0CC6D0E73278
+   31E67F32841A'
+   ]
+   >>,
+       "pat": <<
+   [
+       / protected / h'A10126',
+       / unprotected / {},
+       / payload (PAT Claims-Set) / <<
+   {
+       / eat_nonce / 10: h'5ca3750daf829c30c20797eddb7949b1fd028c5408f2
+   dd8650ad732327e3fb64'
+       / further platform specific claims /
+   }
+       >>,
+       / signature / h'F9F41CAB7F1B7E2C47F67DACA8BB49E3119B7BAE77AEC6C8
+   9162713E0CC6D0E7327831E67F32841A56F50D131FA83979AE064E76E70DC75C070B
+   6D991AEC08AD'
+   ]
+   >>
+   }
+
+               Figure 6: EAT Collection combining KAT and PAT
+
+7.  Security Considerations
 
    TODO Security
 
-7.  IANA Considerations
+8.  IANA Considerations
 
    TODO IANA
 
-8.  References
+9.  References
 
-8.1.  Normative References
+9.1.  Normative References
 
    [I-D.frost-rats-eat-collection]
               Frost, S., "Entity Attestation Token (EAT) Collection
@@ -320,14 +471,6 @@ Table of Contents
               Progress, Internet-Draft, draft-ietf-rats-eat-16, 9
               October 2022, <https://datatracker.ietf.org/doc/html/
               draft-ietf-rats-eat-16>.
-
-   [I-D.tschofenig-rats-psa-token]
-              Tschofenig, H., Frost, S., Brossard, M., Shaw, A. L., and
-              T. Fossati, "Arm's Platform Security Architecture (PSA)
-              Attestation Token", Work in Progress, Internet-Draft,
-              draft-tschofenig-rats-psa-token-10, 6 September 2022,
-              <https://datatracker.ietf.org/doc/html/draft-tschofenig-
-              rats-psa-token-10>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -364,7 +507,16 @@ Table of Contents
               DOI 10.17487/RFC9052, August 2022,
               <https://www.rfc-editor.org/rfc/rfc9052>.
 
-8.2.  Informative References
+9.2.  Informative References
+
+   [I-D.fossati-tls-attestation]
+              Tschofenig, H., Fossati, T., Howard, P., Mihalcea, I., and
+              Y. Deshpande, "Using Attestation in Transport Layer
+              Security (TLS) and Datagram Transport Layer Security
+              (DTLS)", Work in Progress, Internet-Draft, draft-fossati-
+              tls-attestation-01, 26 August 2022,
+              <https://datatracker.ietf.org/doc/html/draft-fossati-tls-
+              attestation-01>.
 
    [I-D.ietf-rats-architecture]
               Birkholz, H., Thaler, D., Richardson, M., Smith, N., and
@@ -374,14 +526,23 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-rats-
               architecture-22>.
 
+   [I-D.tschofenig-rats-psa-token]
+              Tschofenig, H., Frost, S., Brossard, M., Shaw, A. L., and
+              T. Fossati, "Arm's Platform Security Architecture (PSA)
+              Attestation Token", Work in Progress, Internet-Draft,
+              draft-tschofenig-rats-psa-token-10, 6 September 2022,
+              <https://datatracker.ietf.org/doc/html/draft-tschofenig-
+              rats-psa-token-10>.
+
 Appendix A.  Amalgamated CDDL
 
    start = kat-bundle
 
    kat-bundle = {
-       &(eat_profile: 265) => "http://arm.com/kat/1.0.0"
+       &(eat_profile: 265) =>
+           "https://datatracker.ietf.org/doc/draft-bft-rats-kat",
        "kat" => COSE-Sign1-kat
-       "psa-token" => Tagged-COSE-psa-token
+       "pat" => EAT-CBOR-Token
    }
 
    kat = {
@@ -407,142 +568,8 @@ Appendix A.  Amalgamated CDDL
        &(alg-id: 1) => int
    }
 
-   psa-token = {
-       psa-nonce
-       psa-instance-id
-       psa-verification-service-indicator
-       psa-profile
-       psa-implementation-id
-       psa-client-id
-       psa-lifecycle
-       psa-certification-reference
-       ? psa-boot-seed
-       psa-software-components
-   }
+   EAT-CBOR-Token = any
 
-   psa-client-id-key = 2394
-   psa-lifecycle-key = 2395
-   psa-implementation-id-key = 2396
-   psa-boot-seed-key = 2397
-   psa-certification-reference-key = 2398
-   psa-software-components-key = 2399
-   psa-verification-service-indicator-key = 2400
-
-   nonce-label = 10
-   ueid-label = 256
-   profile-label = 265
-
-   psa-hash-type = bytes .size 32 / bytes .size 48 / bytes .size 64
-
-   psa-boot-seed-type = bytes .size (8..32)
-
-   psa-boot-seed = (
-       psa-boot-seed-key => psa-boot-seed-type
-   )
-
-   psa-client-id-nspe-type = -2147483648...0
-   psa-client-id-spe-type = 1..2147483647
-
-   psa-client-id-type = psa-client-id-nspe-type / psa-client-id-spe-type
-
-   psa-client-id = (
-       psa-client-id-key => psa-client-id-type
-   )
-
-   psa-certification-reference-type = text .regexp "[0-9]{13}-[0-9]{5}"
-
-   psa-certification-reference = (
-       ? psa-certification-reference-key =>
-           psa-certification-reference-type
-   )
-
-   psa-implementation-id-type = bytes .size 32
-
-   psa-implementation-id = (
-       psa-implementation-id-key => psa-implementation-id-type
-   )
-
-   psa-instance-id-type = bytes .size 33
-
-   psa-instance-id = (
-       ueid-label => psa-instance-id-type
-   )
-
-   psa-nonce = (
-       nonce-label => psa-hash-type
-   )
-
-   psa-profile-type = "http://arm.com/psa/2.0.0"
-
-   psa-profile = (
-       profile-label => psa-profile-type
-   )
-
-   psa-lifecycle-unknown-type = 0x0000..0x00ff
-   psa-lifecycle-assembly-and-test-type = 0x1000..0x10ff
-   psa-lifecycle-psa-rot-provisioning-type = 0x2000..0x20ff
-   psa-lifecycle-secured-type = 0x3000..0x30ff
-   psa-lifecycle-non-psa-rot-debug-type = 0x4000..0x40ff
-   psa-lifecycle-recoverable-psa-rot-debug-type = 0x5000..0x50ff
-   psa-lifecycle-decommissioned-type = 0x6000..0x60ff
-
-   psa-lifecycle-type =
-       psa-lifecycle-unknown-type /
-       psa-lifecycle-assembly-and-test-type /
-       psa-lifecycle-psa-rot-provisioning-type /
-       psa-lifecycle-secured-type /
-       psa-lifecycle-non-psa-rot-debug-type /
-       psa-lifecycle-recoverable-psa-rot-debug-type /
-       psa-lifecycle-decommissioned-type
-
-   psa-lifecycle = (
-       psa-lifecycle-key => psa-lifecycle-type
-   )
-
-   psa-software-component = {
-     ? &(measurement-type: 1) => text
-       &(measurement-value: 2) => psa-hash-type
-     ? &(version: 4) => text
-       &(signer-id: 5) => psa-hash-type
-     ? &(measurement-desc: 6) => text
-   }
-
-   psa-software-components = (
-       psa-software-components-key => [ + psa-software-component ]
-   )
-
-   psa-verification-service-indicator-type = text
-
-   psa-verification-service-indicator = (
-       ? psa-verification-service-indicator-key =>
-           psa-verification-service-indicator-type
-   )
-
-
-   Tagged-COSE-psa-token = Tagged-COSE-Sign1-psa-token /
-                           Tagged-COSE-Mac0-psa-token
-
-   Tagged-COSE-Sign1-psa-token = #6.18(COSE-Sign1-psa-token)
-
-   COSE-Sign1-psa-token = [
-       protected: bytes .cbor psa-token-protected-headers
-       unprotected: {}
-       payload: bytes .cbor psa-token
-       signature: bytes
-   ]
-
-   Tagged-COSE-Mac0-psa-token = #6.17(COSE-Mac0-psa-token)
-
-   COSE-Mac0-psa-token = [
-       protected: bytes .cbor psa-token-protected-headers
-       unprotected: {}
-       payload: bytes .cbor psa-token
-       tag: bytes
-   ]
-
-   psa-token-protected-headers = {
-       &(alg-id: 1) => int
-   }
 
    label = int / text
    values = any
