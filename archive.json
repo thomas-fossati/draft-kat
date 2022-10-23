@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-10-20T00:49:27.292456+00:00",
+  "timestamp": "2022-10-23T00:54:37.377867+00:00",
   "repo": "thomas-fossati/draft-kat",
   "labels": [
     {
@@ -55,7 +55,7 @@
       "id": "I_kwDOIIKzuM5TtkPL",
       "title": "Linking strategy between platform and key tokens",
       "url": "https://github.com/thomas-fossati/draft-kat/issues/1",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "ionut-arm",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -64,8 +64,8 @@
       "labels": [],
       "body": "We need to write up a detailed description of how the tokens in the KAT Bundle/EAT collection are (cryptographically) linked together. This might have to build upon the more generic description that will be added to the [EAT collection draft](https://thomas-fossati.github.io/draft-kat/draft-bft-rats-kat.html#I-D.frost-rats-eat-collection).\r\n\r\nThese details are also relevant to the security of the token and bundle, so should also be mentioned in the Security Considerations section.",
       "createdAt": "2022-10-11T11:12:42Z",
-      "updatedAt": "2022-10-12T16:04:03Z",
-      "closedAt": null,
+      "updatedAt": "2022-10-21T14:39:32Z",
+      "closedAt": "2022-10-21T14:39:32Z",
       "comments": [
         {
           "author": "thomas-fossati",
@@ -81,16 +81,24 @@
       "id": "I_kwDOIIKzuM5TtmXQ",
       "title": "More generic platform attestation token",
       "url": "https://github.com/thomas-fossati/draft-kat/issues/2",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "ionut-arm",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Instead of focusing primarily on PSA Attestation as the main underlying platform token, we should try to abstract that away to generic platform attestation and use PSA Attestation only as an example.",
       "createdAt": "2022-10-11T11:19:43Z",
-      "updatedAt": "2022-10-11T11:19:43Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2022-10-21T14:39:32Z",
+      "closedAt": "2022-10-21T14:39:32Z",
+      "comments": [
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "OWNER",
+          "body": "As discussed, we are going to make the PAT a generic EAT (of which the PSA token is an instance).",
+          "createdAt": "2022-10-20T13:10:55Z",
+          "updatedAt": "2022-10-20T13:10:55Z"
+        }
+      ]
     },
     {
       "number": 6,
@@ -137,14 +145,30 @@
       "id": "I_kwDOIIKzuM5T1Pax",
       "title": "provide an example of the combined token",
       "url": "https://github.com/thomas-fossati/draft-kat/issues/8",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "thomas-fossati",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "We should include a full example since the signature covering the KAT is essential.\r\n\r\n_Originally posted by @hannestschofenig in https://github.com/thomas-fossati/draft-kat/issues/4#issuecomment-1276398042_\r\n      ",
       "createdAt": "2022-10-12T16:05:52Z",
-      "updatedAt": "2022-10-12T16:05:52Z",
+      "updatedAt": "2022-10-21T14:39:33Z",
+      "closedAt": "2022-10-21T14:39:32Z",
+      "comments": []
+    },
+    {
+      "number": 10,
+      "id": "I_kwDOIIKzuM5UcGUW",
+      "title": "Combos to model",
+      "url": "https://github.com/thomas-fossati/draft-kat/issues/10",
+      "state": "OPEN",
+      "author": "thomas-fossati",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "types of combination that we may want to capture:\r\n\r\n* [x] separate KAT and PAT\r\n* [ ] combined KAT and PAT\r\n* [ ] only KAT (implicit PAT)",
+      "createdAt": "2022-10-20T13:42:55Z",
+      "updatedAt": "2022-10-20T13:42:55Z",
       "closedAt": null,
       "comments": []
     }
@@ -394,24 +418,26 @@
       "id": "PR_kwDOIIKzuM5Av3_A",
       "title": "Updated architecture description",
       "url": "https://github.com/thomas-fossati/draft-kat/pull/9",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "hannestschofenig",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2022-10-13T15:37:51Z",
-      "updatedAt": "2022-10-18T07:13:39Z",
+      "updatedAt": "2022-10-20T12:12:42Z",
       "baseRepository": "thomas-fossati/draft-kat",
       "baseRefName": "main",
       "baseRefOid": "4783abad4b14894842788f6171ec1d32cc8e5bcc",
       "headRepository": "hannestschofenig/draft-kat",
       "headRefName": "patch-3",
       "headRefOid": "43e7014a0f59ce321133f93af5c9e3b09f917ba1",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2022-10-20T12:12:41Z",
+      "mergedAt": "2022-10-20T12:12:41Z",
+      "mergedBy": "thomas-fossati",
+      "mergeCommit": {
+        "oid": "d0e0294c028161723b5f0600be6fa784cd4d0601"
+      },
       "comments": [
         {
           "author": "thomas-fossati",
@@ -613,6 +639,49 @@
           ]
         }
       ]
+    },
+    {
+      "number": 11,
+      "id": "PR_kwDOIIKzuM5BNDzO",
+      "title": "add content to the draft",
+      "url": "https://github.com/thomas-fossati/draft-kat/pull/11",
+      "state": "MERGED",
+      "author": "thomas-fossati",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Fix #1\r\nFix #2\r\nFix #8",
+      "createdAt": "2022-10-20T14:57:03Z",
+      "updatedAt": "2022-10-21T14:39:31Z",
+      "baseRepository": "thomas-fossati/draft-kat",
+      "baseRefName": "main",
+      "baseRefOid": "d0e0294c028161723b5f0600be6fa784cd4d0601",
+      "headRepository": "thomas-fossati/draft-kat",
+      "headRefName": "meat",
+      "headRefOid": "90be370188358ee856c7d5a22fb1dbad143655d2",
+      "closedAt": "2022-10-21T14:39:30Z",
+      "mergedAt": "2022-10-21T14:39:30Z",
+      "mergedBy": "thomas-fossati",
+      "mergeCommit": {
+        "oid": "949fdad7d0eb934a2449885555bd7ea6bd1ec867"
+      },
+      "comments": [
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "OWNER",
+          "body": "cc @hannestschofenig ",
+          "createdAt": "2022-10-20T14:57:25Z",
+          "updatedAt": "2022-10-20T14:57:25Z"
+        },
+        {
+          "author": "hannestschofenig",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Works for me. ",
+          "createdAt": "2022-10-21T13:41:22Z",
+          "updatedAt": "2022-10-21T13:41:22Z"
+        }
+      ],
+      "reviews": []
     }
   ]
 }
