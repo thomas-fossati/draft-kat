@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-10-23T00:54:37.377867+00:00",
+  "timestamp": "2022-10-25T00:58:35.659238+00:00",
   "repo": "thomas-fossati/draft-kat",
   "labels": [
     {
@@ -169,6 +169,22 @@
       "body": "types of combination that we may want to capture:\r\n\r\n* [x] separate KAT and PAT\r\n* [ ] combined KAT and PAT\r\n* [ ] only KAT (implicit PAT)",
       "createdAt": "2022-10-20T13:42:55Z",
       "updatedAt": "2022-10-20T13:42:55Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 12,
+      "id": "I_kwDOIIKzuM5Uqopj",
+      "title": "add Ionut as co-author",
+      "url": "https://github.com/thomas-fossati/draft-kat/issues/12",
+      "state": "OPEN",
+      "author": "thomas-fossati",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "$title",
+      "createdAt": "2022-10-24T08:44:17Z",
+      "updatedAt": "2022-10-24T08:44:17Z",
       "closedAt": null,
       "comments": []
     }
