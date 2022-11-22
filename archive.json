@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-10-25T00:58:35.659238+00:00",
+  "timestamp": "2022-11-22T00:41:25.327457+00:00",
   "repo": "thomas-fossati/draft-kat",
   "labels": [
     {
@@ -187,6 +187,30 @@
       "updatedAt": "2022-10-24T08:44:17Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 13,
+      "id": "I_kwDOIIKzuM5W5vGp",
+      "title": "Carl's review comment",
+      "url": "https://github.com/thomas-fossati/draft-kat/issues/13",
+      "state": "OPEN",
+      "author": "thomas-fossati",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "* In Section 3, it may be worth mentioning that a higher-level API may encapsulate GenerateKeyPair and createCAB. In my experience, this is the norm (i.e., you only get one shot to get an attestation for a key). I asked one of the vendors about this and the reply was that key attestations are relative to state at generation time only.",
+      "createdAt": "2022-11-21T13:43:45Z",
+      "updatedAt": "2022-11-21T13:43:59Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "OWNER",
+          "body": "/cc @carl-wallace",
+          "createdAt": "2022-11-21T13:43:59Z",
+          "updatedAt": "2022-11-21T13:43:59Z"
+        }
+      ]
     }
   ],
   "pulls": [
