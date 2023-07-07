@@ -66,10 +66,10 @@ The following terms are used in this document:
 Root of Trust (RoT):
 : A set of software and/or hardware components that need to be trusted
 to act as a security foundation required for accomplishing the security
-goals. In our case, the RoT is expected to offer the functionality for
-attesting to the state of the platform and indirectly also to attest the
-integrity of the IK (public as well as private key) and the
-confidentiality IK private key.
+goals of a system. In our case, the RoT is expected to offer the
+functionality for attesting to the state of the platform, and indirectly
+also to attest the integrity of the IK (public as well as private key)
+and the confidentiality of the IK private key.
 
 Attestation Key (AK):
 : Cryptographic key belonging to the RoT that is only used to sign
@@ -86,11 +86,11 @@ single AK is used. In that case the AK is used as a PAK and a KAK.
 Identity Key (IK):
 : The IK consists of a private and a public key. The private key is used
 by the usage protocol. The public key is included in the Key Attestation
-Token.
+Token.  The IK is protected by the RoT.
 
 Usage Protocol:
-: A (security) protocol that allows demonstrating possession of the
-private key.
+: A (security) protocol that requires demonstrating possession of the
+private IK.
 
 Attestation Token (AT):
 : A collection of claims that a RoT assembles (and signs) with the
@@ -114,7 +114,9 @@ certification authority since the KAT behaves like a certificate.
 Combined Attestation Bundle (CAB):
 : A structure used to bundle a KAT and a PAT together for transport in
 the usage protocol. If the KAT already includes a PAT, in form of a
-nested token, then it already corresponds to a CAB.
+nested token, then it already corresponds to a CAB.  A CAB is equivalent
+to a certificate that binds the identity of the platform's TCB with the
+IK public key.
 
 Presenter:
 : Party that proves possession of a private key to a recipient of a KAT.
@@ -140,7 +142,7 @@ the examples in {{examples}} use CBOR diagnostic notation defined in
 
 Key attestation is an extension to the attestation functionality
 described in {{-rats-arch}}.  We describe this conceptually by splitting
-the internals of the attester into a two parts, platform attestation and
+the internals of the attester into two parts, platform attestation and
 key attestation. This is shown in {{fig-arch}}. These are logical roles
 and implementations may combine them into a single physical entity.
 
@@ -205,7 +207,7 @@ the IK (pIK) and is then signed with the Key Attestation Key (KAK).
 
 To ensure freshness of the PAT and the KAT a nonce is used, as suggested
 by the RATS architecture {{-rats-arch}}. Here is the symbolic API call
-to request a KAT and a PAT, which are concatinated together as the CAB.
+to request a KAT and a PAT, which are concatenated together as the CAB.
 
 ~~~~
 cab = createCAB(key_id, nonce)
