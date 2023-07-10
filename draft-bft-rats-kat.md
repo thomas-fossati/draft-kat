@@ -24,8 +24,7 @@ author:
    organization: arm
    email: thomas.fossati@arm.com
  - name: Hannes Tschofenig
-   organization: arm
-   email: hannes.tschofenig@arm.com
+   email: hannes.tschofenig@gmx.net
 
 normative:
   I-D.ietf-rats-eat: eat
