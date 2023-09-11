@@ -104,7 +104,7 @@ base (TCB). The process of generating a PAT typically involves gathering
 data during measured boot.
 
 Key Attestation Token (KAT):
-: An AT containing a claim with a proof-of-possession (PoP) key. The KAT
+: An AT containing a claim with a public key. The KAT
 may also contain other claims, such as those indicating its validity.
 The KAT is signed by the KAK. The key attestation service, which is part
 of the platform root of trust (RoT), conceptually acts as a local
