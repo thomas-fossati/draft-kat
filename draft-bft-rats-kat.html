@@ -1532,15 +1532,13 @@ platform attestation token's claims-set, except for the presence of the
         <h3 id="name-kat-pat-bundle">
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-kat-pat-bundle" class="section-name selfRef">KAT-PAT Bundle</a>
         </h3>
-<p id="section-5.1-1">The KAT and PAT tokens are combined in an EAT "collection" <span>[<a href="#I-D.frost-rats-eat-collection" class="cite xref">I-D.frost-rats-eat-collection</a>]</span>
+<p id="section-5.1-1">The KAT and PAT tokens are combined in a CMW "collection" <span>[<a href="#I-D.ietf-rats-msg-wrap" class="cite xref">I-D.ietf-rats-msg-wrap</a>]</span>
 as shown in <a href="#fig-kat-bundle-cddl" class="auto internal xref">Figure 3</a>.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 <span id="name-kat-bundle-definition"></span><div id="fig-kat-bundle-cddl">
 <figure id="figure-3">
           <div class="alignLeft art-cddl art-text artwork" id="section-5.1-2.1">
 <pre>
 kat-bundle = {
-    &amp;(eat_profile: 265) =&gt;
-        "https://datatracker.ietf.org/doc/draft-bft-rats-kat",
     "kat" =&gt; COSE-Sign1-kat
     "pat" =&gt; EAT-CBOR-Token
 }
@@ -1642,8 +1640,6 @@ dd8650ad732327e3fb64'
         <div class="alignLeft art-cbor-diag art-text artwork" id="section-6-3.1">
 <pre>
 {
-    / eat_profile / 265:
-        'https://datatracker.ietf.org/doc/draft-bft-rats-kat-00',
     "kat": &lt;&lt;
 [
     / protected / h'A10126',
@@ -1728,13 +1724,13 @@ dd8650ad732327e3fb64'
 <a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
-<dt id="I-D.frost-rats-eat-collection">[I-D.frost-rats-eat-collection]</dt>
-        <dd>
-<span class="refAuthor">Frost, S.</span>, <span class="refTitle">"Entity Attestation Token (EAT) Collection Type"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-frost-rats-eat-collection-03</span>, <time datetime="2023-06-10" class="refDate">10 June 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-frost-rats-eat-collection-03">https://datatracker.ietf.org/doc/html/draft-frost-rats-eat-collection-03</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="I-D.ietf-rats-eat">[I-D.ietf-rats-eat]</dt>
         <dd>
 <span class="refAuthor">Lundblade, L.</span>, <span class="refAuthor">Mandyam, G.</span>, <span class="refAuthor">O'Donoghue, J.</span>, and <span class="refAuthor">C. Wallace</span>, <span class="refTitle">"The Entity Attestation Token (EAT)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-rats-eat-25</span>, <time datetime="2024-01-15" class="refDate">15 January 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-rats-eat-25">https://datatracker.ietf.org/doc/html/draft-ietf-rats-eat-25</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-rats-msg-wrap">[I-D.ietf-rats-msg-wrap]</dt>
+        <dd>
+<span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Smith, N.</span>, <span class="refAuthor">Fossati, T.</span>, and <span class="refAuthor">H. Tschofenig</span>, <span class="refTitle">"RATS Conceptual Messages Wrapper (CMW)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-rats-msg-wrap-03</span>, <time datetime="2024-01-29" class="refDate">29 January 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-rats-msg-wrap-03">https://datatracker.ietf.org/doc/html/draft-ietf-rats-msg-wrap-03</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
@@ -1799,8 +1795,6 @@ dd8650ad732327e3fb64'
 start = kat-bundle
 
 kat-bundle = {
-    &amp;(eat_profile: 265) =&gt;
-        "https://datatracker.ietf.org/doc/draft-bft-rats-kat",
     "kat" =&gt; COSE-Sign1-kat
     "pat" =&gt; EAT-CBOR-Token
 }

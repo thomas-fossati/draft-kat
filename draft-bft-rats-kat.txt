@@ -317,12 +317,10 @@ Table of Contents
 
 5.1.  KAT-PAT Bundle
 
-   The KAT and PAT tokens are combined in an EAT "collection"
-   [I-D.frost-rats-eat-collection] as shown in Figure 3.
+   The KAT and PAT tokens are combined in a CMW "collection"
+   [I-D.ietf-rats-msg-wrap] as shown in Figure 3.
 
    kat-bundle = {
-       &(eat_profile: 265) =>
-           "https://datatracker.ietf.org/doc/draft-bft-rats-kat",
        "kat" => COSE-Sign1-kat
        "pat" => EAT-CBOR-Token
    }
@@ -393,8 +391,6 @@ Table of Contents
                   Figure 5: COSE Sign1 signed minimal PAT
 
    {
-       / eat_profile / 265:
-           'https://datatracker.ietf.org/doc/draft-bft-rats-kat-00',
        "kat": <<
    [
        / protected / h'A10126',
@@ -460,19 +456,19 @@ Table of Contents
 
 9.1.  Normative References
 
-   [I-D.frost-rats-eat-collection]
-              Frost, S., "Entity Attestation Token (EAT) Collection
-              Type", Work in Progress, Internet-Draft, draft-frost-rats-
-              eat-collection-03, 10 June 2023,
-              <https://datatracker.ietf.org/doc/html/draft-frost-rats-
-              eat-collection-03>.
-
    [I-D.ietf-rats-eat]
               Lundblade, L., Mandyam, G., O'Donoghue, J., and C.
               Wallace, "The Entity Attestation Token (EAT)", Work in
               Progress, Internet-Draft, draft-ietf-rats-eat-25, 15
               January 2024, <https://datatracker.ietf.org/doc/html/
               draft-ietf-rats-eat-25>.
+
+   [I-D.ietf-rats-msg-wrap]
+              Birkholz, H., Smith, N., Fossati, T., and H. Tschofenig,
+              "RATS Conceptual Messages Wrapper (CMW)", Work in
+              Progress, Internet-Draft, draft-ietf-rats-msg-wrap-03, 29
+              January 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-rats-msg-wrap-03>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -538,8 +534,6 @@ Appendix A.  Amalgamated CDDL
    start = kat-bundle
 
    kat-bundle = {
-       &(eat_profile: 265) =>
-           "https://datatracker.ietf.org/doc/draft-bft-rats-kat",
        "kat" => COSE-Sign1-kat
        "pat" => EAT-CBOR-Token
    }
