@@ -3,10 +3,11 @@
 
 
 Remote ATtestation ProcedureS                                M. Brossard
-Internet-Draft                                                T. Fossati
-Intended status: Standards Track                                     arm
-Expires: 14 March 2024                                     H. Tschofenig
-                                                       11 September 2023
+Internet-Draft                                                       arm
+Intended status: Standards Track                              T. Fossati
+Expires: 13 August 2024                                           Linaro
+                                                           H. Tschofenig
+                                                        10 February 2024
 
 
                    An EAT-based Key Attestation Token
@@ -43,11 +44,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 March 2024.
+   This Internet-Draft will expire on 13 August 2024.
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -123,8 +124,7 @@ Table of Contents
       A collection of claims that a RoT assembles (and signs) with the
       purpose of informing - in a verifiable way - relying parties about
       the identity and state of the platform.  Essentially a type of
-      Evidence as per the RATS architecture terminology
-      [I-D.ietf-rats-architecture].
+      Evidence as per the RATS architecture terminology [RFC9334].
 
    Platform Attestation Token (PAT):
       An AT containing claims relating to the security state of the
@@ -160,7 +160,7 @@ Table of Contents
       PAT in a CAB.
 
    The reader is assumed to be familiar with the vocabulary and concepts
-   defined in [I-D.ietf-rats-architecture].
+   defined in [RFC9334].
 
    CDDL [RFC8610] [RFC9165] is used to describe the data formats and the
    examples in Section 6 use CBOR diagnostic notation defined in
@@ -175,11 +175,11 @@ Table of Contents
 3.  Architecture
 
    Key attestation is an extension to the attestation functionality
-   described in [I-D.ietf-rats-architecture].  We describe this
-   conceptually by splitting the internals of the attester into two
-   parts, platform attestation and key attestation.  This is shown in
-   Figure 1.  These are logical roles and implementations may combine
-   them into a single physical entity.
+   described in [RFC9334].  We describe this conceptually by splitting
+   the internals of the attester into two parts, platform attestation
+   and key attestation.  This is shown in Figure 1.  These are logical
+   roles and implementations may combine them into a single physical
+   entity.
 
    Security-sensitive functionality, like attestation, has to be placed
    into the trusted computing base.  Since the trusted computing base
@@ -239,9 +239,9 @@ Table of Contents
    Key Attestation Key (KAK).
 
    To ensure freshness of the PAT and the KAT a nonce is used, as
-   suggested by the RATS architecture [I-D.ietf-rats-architecture].
-   Here is the symbolic API call to request a KAT and a PAT, which are
-   concatenated together as the CAB.
+   suggested by the RATS architecture [RFC9334].  Here is the symbolic
+   API call to request a KAT and a PAT, which are concatenated together
+   as the CAB.
 
    cab = createCAB(key_id, nonce)
 
@@ -332,13 +332,12 @@ Table of Contents
 5.1.1.  KAT-PAT linkage
 
    KAT and PAT are a form of layered attestation (Section 3.2 of
-   [I-D.ietf-rats-architecture]).  For the scheme to be secure, it is
-   crucial that their linkage is captured in their combined wire image.
-   The way this is achieved is by hashing the CBOR-encoded COSE_Key
-   corresponding to the KAK (i.e., the kak-pub claim in the KAT) and
-   using it to populate the eat_nonce claim in the PAT.  The signature
-   on the PAT seals the image of the used KAK and therefore the linkage
-   between the two layers.
+   [RFC9334]).  For the scheme to be secure, it is crucial that their
+   linkage is captured in their combined wire image.  The way this is
+   achieved is by hashing the CBOR-encoded COSE_Key corresponding to the
+   KAK (i.e., the kak-pub claim in the KAT) and using it to populate the
+   eat_nonce claim in the PAT.  The signature on the PAT seals the image
+   of the used KAK and therefore the linkage between the two layers.
 
 6.  Examples
 
@@ -471,9 +470,9 @@ Table of Contents
    [I-D.ietf-rats-eat]
               Lundblade, L., Mandyam, G., O'Donoghue, J., and C.
               Wallace, "The Entity Attestation Token (EAT)", Work in
-              Progress, Internet-Draft, draft-ietf-rats-eat-21, 30 June
-              2023, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              rats-eat-21>.
+              Progress, Internet-Draft, draft-ietf-rats-eat-25, 15
+              January 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-rats-eat-25>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -517,25 +516,22 @@ Table of Contents
               Y. Deshpande, "Using Attestation in Transport Layer
               Security (TLS) and Datagram Transport Layer Security
               (DTLS)", Work in Progress, Internet-Draft, draft-fossati-
-              tls-attestation-03, 13 March 2023,
+              tls-attestation-04, 23 October 2023,
               <https://datatracker.ietf.org/doc/html/draft-fossati-tls-
-              attestation-03>.
-
-   [I-D.ietf-rats-architecture]
-              Birkholz, H., Thaler, D., Richardson, M., Smith, N., and
-              W. Pan, "Remote ATtestation procedureS (RATS)
-              Architecture", Work in Progress, Internet-Draft, draft-
-              ietf-rats-architecture-22, 28 September 2022,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-rats-
-              architecture-22>.
+              attestation-04>.
 
    [I-D.tschofenig-rats-psa-token]
               Tschofenig, H., Frost, S., Brossard, M., Shaw, A. L., and
               T. Fossati, "Arm's Platform Security Architecture (PSA)
               Attestation Token", Work in Progress, Internet-Draft,
-              draft-tschofenig-rats-psa-token-13, 1 September 2023,
+              draft-tschofenig-rats-psa-token-20, 18 December 2023,
               <https://datatracker.ietf.org/doc/html/draft-tschofenig-
-              rats-psa-token-13>.
+              rats-psa-token-20>.
+
+   [RFC9334]  Birkholz, H., Thaler, D., Richardson, M., Smith, N., and
+              W. Pan, "Remote ATtestation procedureS (RATS)
+              Architecture", RFC 9334, DOI 10.17487/RFC9334, January
+              2023, <https://www.rfc-editor.org/rfc/rfc9334>.
 
 Appendix A.  Amalgamated CDDL
 
@@ -598,8 +594,8 @@ Authors' Addresses
 
 
    Thomas Fossati
-   arm
-   Email: thomas.fossati@arm.com
+   Linaro
+   Email: thomas.fossati@linaro.org
 
 
    Hannes Tschofenig
