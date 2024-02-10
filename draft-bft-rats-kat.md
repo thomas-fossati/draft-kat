@@ -21,8 +21,8 @@ author:
    organization: arm
    email: mathias.brossard@arm.com
  - name: Thomas Fossati
-   organization: arm
-   email: thomas.fossati@arm.com
+   organization: Linaro
+   email: thomas.fossati@linaro.org
  - name: Hannes Tschofenig
    email: hannes.tschofenig@gmx.net
 
@@ -40,7 +40,7 @@ normative:
     =: RFC9052
 
 informative:
-  I-D.ietf-rats-architecture: rats-arch
+  RFC9334: rats-arch
   I-D.tschofenig-rats-psa-token: psa-token
   I-D.fossati-tls-attestation:
 
