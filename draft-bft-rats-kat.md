@@ -28,7 +28,7 @@ author:
 
 normative:
   I-D.ietf-rats-eat: eat
-  I-D.frost-rats-eat-collection: eat-coll
+  I-D.ietf-rats-msg-wrap: cmw
   RFC8610: cddl
   RFC8747: cwt-pop
   RFC9165: cddlplus
@@ -267,11 +267,11 @@ An example of PAT could be the PSA Token {{-psa-token}}.
 
 ## KAT-PAT Bundle {#bundle}
 
-The KAT and PAT tokens are combined in an EAT "collection" {{-eat-coll}}
+The KAT and PAT tokens are combined in a CMW "collection" {{-cmw}}
 as shown in {{fig-kat-bundle-cddl}}.
 
 ~~~ cddl
-{::include cddl/eat-collection.cddl}
+{::include cddl/cmw-collection.cddl}
 ~~~
 {: #fig-kat-bundle-cddl artwork-align="left" title="KAT Bundle Definition"}
 

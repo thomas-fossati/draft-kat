@@ -2,7 +2,7 @@
 # kat-bundle
 #
 KAT_BUNDLE_FRAGS := start-kat-bundle.cddl
-KAT_BUNDLE_FRAGS += eat-collection.cddl
+KAT_BUNDLE_FRAGS += cmw-collection.cddl
 KAT_BUNDLE_FRAGS += kat.cddl
 KAT_BUNDLE_FRAGS += kat-sign1.cddl
 KAT_BUNDLE_FRAGS += psa-token.cddl

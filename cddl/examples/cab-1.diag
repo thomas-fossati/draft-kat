@@ -1,6 +1,4 @@
 {
-    / eat_profile / 265:
-        'https://datatracker.ietf.org/doc/draft-bft-rats-kat-00',
     "kat": <<
 [
     / protected / h'A10126',
