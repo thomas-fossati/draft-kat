@@ -47,7 +47,7 @@ informative:
 --- abstract
 
 This document defines an evidence format for key attestation based on
-the Entity Attestation Token (EAT) format.
+the Entity Attestation Token (EAT).
 
 --- middle
 
@@ -77,6 +77,12 @@ attestation tokens.
 Platform Attestation Key (PAK):
 : An AK used specifically for signing attestation tokens relating to the
 state of the platform.
+
+Key Attestation:
+: Evidence containing properties of the environment(s) in which the private
+keys are stored. For example, a Relying Party may want to know whether
+a private key is stored in a hardware security module and cannot be
+exported in unencrypted fashion.
 
 Key Attestation Key (KAK):
 : An AK used specifically for signing KATs. In some systems only a
