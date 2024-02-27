@@ -5,9 +5,9 @@
 Remote ATtestation ProcedureS                                M. Brossard
 Internet-Draft                                                       arm
 Intended status: Standards Track                              T. Fossati
-Expires: 13 August 2024                                           Linaro
+Expires: 30 August 2024                                           Linaro
                                                            H. Tschofenig
-                                                        10 February 2024
+                                                        27 February 2024
 
 
                    An EAT-based Key Attestation Token
@@ -16,7 +16,7 @@ Expires: 13 August 2024                                           Linaro
 Abstract
 
    This document defines an evidence format for key attestation based on
-   the Entity Attestation Token (EAT) format.
+   the Entity Attestation Token (EAT).
 
 Discussion Venues
 
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 August 2024.
+   This Internet-Draft will expire on 30 August 2024.
 
 Copyright Notice
 
@@ -105,6 +105,12 @@ Table of Contents
    Platform Attestation Key (PAK):
       An AK used specifically for signing attestation tokens relating to
       the state of the platform.
+
+   Key Attestation:
+      Evidence containing properties of the environment(s) in which the
+      private keys are stored.  For example, a Relying Party may want to
+      know whether a private key is stored in a hardware security module
+      and cannot be exported in unencrypted fashion.
 
    Key Attestation Key (KAK):
       An AK used specifically for signing KATs.  In some systems only a
@@ -466,9 +472,9 @@ Table of Contents
    [I-D.ietf-rats-msg-wrap]
               Birkholz, H., Smith, N., Fossati, T., and H. Tschofenig,
               "RATS Conceptual Messages Wrapper (CMW)", Work in
-              Progress, Internet-Draft, draft-ietf-rats-msg-wrap-03, 29
-              January 2024, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-rats-msg-wrap-03>.
+              Progress, Internet-Draft, draft-ietf-rats-msg-wrap-04, 27
+              February 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-rats-msg-wrap-04>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -520,9 +526,9 @@ Table of Contents
               Tschofenig, H., Frost, S., Brossard, M., Shaw, A. L., and
               T. Fossati, "Arm's Platform Security Architecture (PSA)
               Attestation Token", Work in Progress, Internet-Draft,
-              draft-tschofenig-rats-psa-token-20, 18 December 2023,
+              draft-tschofenig-rats-psa-token-22, 21 February 2024,
               <https://datatracker.ietf.org/doc/html/draft-tschofenig-
-              rats-psa-token-20>.
+              rats-psa-token-22>.
 
    [RFC9334]  Birkholz, H., Thaler, D., Richardson, M., Smith, N., and
               W. Pan, "Remote ATtestation procedureS (RATS)
