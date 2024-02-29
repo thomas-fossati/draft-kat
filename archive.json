@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-27T00:37:32.850035+00:00",
+  "timestamp": "2024-02-29T00:37:32.686599+00:00",
   "repo": "thomas-fossati/draft-kat",
   "labels": [
     {
@@ -305,6 +305,22 @@
       "body": "At least in the general case, an attester must not allow any externally controlled agents to call through the platform attestation request ABI.  In particular, an external party should be prevented from obtaining evidence samples with arbitrary nonces that they could use to bind their KAT to a genuine PAT.  (I can't remember if we are already stating this.  If so, this issue can be trashed.)",
       "createdAt": "2023-10-16T13:14:10Z",
       "updatedAt": "2023-10-16T13:14:30Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 23,
+      "id": "I_kwDOIIKzuM6AjBZb",
+      "title": "Adding an CMW Collection Example",
+      "url": "https://github.com/thomas-fossati/draft-kat/issues/23",
+      "state": "OPEN",
+      "author": "hannestschofenig",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I think it would be good to add an example of the CWM Collection, as proposed in \r\nhttps://github.com/ietf-rats-wg/draft-ietf-rats-msg-wrap/issues/75\r\n\r\n\r\n> \r\n> {\r\n>  \"__cmwc_t\": \"tag:example.com,2024:combined-evidence\",\r\n> \r\n>  \"kat\": [\r\n>   \"application/kat+jwt\",\r\n>   \"eyJhbGci...\"\r\n>  ],\r\n>   \r\n>  \"pat\": [\r\n>   \"application/pat+jwt\",\r\n>   \"eyJhbGci...\"\r\n>  ]\r\n> }\r\n> ",
+      "createdAt": "2024-02-27T13:58:28Z",
+      "updatedAt": "2024-02-27T13:58:28Z",
       "closedAt": null,
       "comments": []
     }
@@ -965,6 +981,61 @@
           "body": "",
           "createdAt": "2023-09-11T15:09:08Z",
           "updatedAt": "2023-09-11T15:09:08Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "id": "PR_kwDOIIKzuM5oDIf0",
+      "title": "Terminology Update",
+      "url": "https://github.com/thomas-fossati/draft-kat/pull/22",
+      "state": "MERGED",
+      "author": "hannestschofenig",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-02-27T13:57:22Z",
+      "updatedAt": "2024-02-27T17:16:03Z",
+      "baseRepository": "thomas-fossati/draft-kat",
+      "baseRefName": "main",
+      "baseRefOid": "82287c6571ea82123db799c2f0f24dd215092053",
+      "headRepository": "hannestschofenig/draft-kat",
+      "headRefName": "patch-4",
+      "headRefOid": "2e3d4760e4f63e8438eb99db001f15f7abe369c6",
+      "closedAt": "2024-02-27T17:16:03Z",
+      "mergedAt": "2024-02-27T17:16:03Z",
+      "mergedBy": "thomas-fossati",
+      "mergeCommit": {
+        "oid": "5643fcdb66d74117b07ddade12138440329e193e"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOIIKzuM5xedDE",
+          "commit": {
+            "abbreviatedOid": "2e3d476"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "LGTM.\r\n\r\nOne comment: are there any claims readily available to express that semantics?  If so, should we add them in the KAT?  If not, should we define them in the document?",
+          "createdAt": "2024-02-27T15:12:36Z",
+          "updatedAt": "2024-02-27T15:12:36Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOIIKzuM5xexoA",
+          "commit": {
+            "abbreviatedOid": "2e3d476"
+          },
+          "author": "mathias-arm",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-27T15:35:30Z",
+          "updatedAt": "2024-02-27T15:35:30Z",
           "comments": []
         }
       ]
