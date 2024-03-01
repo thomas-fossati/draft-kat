@@ -1,4 +1,0 @@
-kat-bundle = {
-    "kat" => COSE-Sign1-kat
-    "pat" => EAT-CBOR-Token
-}

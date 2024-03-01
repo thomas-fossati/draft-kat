@@ -167,27 +167,26 @@ example usage protocol is TLS with the extension defined in
 {{I-D.fossati-tls-attestation}}.
 
 ~~~aasvg
- +----------------------------------+ .
- | Attester                         | .
- |                                  | .
- | +-------------+  +-------------+ | .
- | | Key         |  | Platform    | | .
- | | Attestation |  | Attestation | | .
- | | Service     |  | Service     | | .
- | +-------------+  +-------------+ | .
- +----------------------------------+ .
-       ^                              .
-       |                              .
-       |       Trusted Computing Base .
-.......|...............................
-       |
-       |
-       v
- +-----------------+                 +-----------------+
+  .------------------------------------.
+ | .----------------------------------. |
+ | | Attester                         | |
+ | | .-------------.  .-------------. | |
+ | | | Key         |  | Platform    | | |
+ | | | Attestation |  | Attestation | | |
+ | | | Service     |  | Service     | | |
+ | | '-------------'  '-------------' | |
+ | '----------------------------------' |
+ |       ^                              |
+ |       |       Trusted Computing Base |
+  '------+-----------------------------'
+         |
+         |
+         v
+ .-----------------.                 .-----------------.
  |                 | Usage Protocol  |                 |
  |    Presenter    +---------------->|    Recipient    |
  |                 |                 |                 |
- +-----------------+                 +-----------------+
+ '-----------------'                 '-----------------'
 ~~~
 {: #fig-arch title="Architecture"}
 
@@ -251,7 +250,7 @@ The KAT utilizes the proof-of-possession functionality defined in
 {{-cwt-pop}} to encode the public key of the IK (pIK).
 
 ~~~ cddl
-{::include cddl/kat.cddl}
+{::include cddl2/kat/kat.cddl}
 ~~~
 {: #fig-kat-cddl artwork-align="left" title="KAT Definition"}
 
@@ -277,7 +276,7 @@ The KAT and PAT tokens are combined in a CMW "collection" {{-cmw}}
 as shown in {{fig-kat-bundle-cddl}}.
 
 ~~~ cddl
-{::include cddl/cmw-collection.cddl}
+{::include cddl2/cab/cab.cddl}
 ~~~
 {: #fig-kat-bundle-cddl artwork-align="left" title="KAT Bundle Definition"}
 
@@ -294,19 +293,19 @@ of the used KAK and therefore the linkage between the two layers.
 # Examples {#examples}
 
 ~~~ cbor-diag
-{::include cddl/examples/sign1-kat-1.diag}
+{::include cddl2/kat/ex-1.diag}
 ~~~
-{: #fig-example-sign1-kat artwork-align="left" title="COSE Sign1 signed KAT"}
+{: #fig-example-sign1-kat artwork-align="left" title="KAT"}
 
 ~~~ cbor-diag
-{::include cddl/examples/sign1-pat-1.diag}
+{::include cddl2/pat/ex-1.diag}
 ~~~
-{: #fig-example-pat artwork-align="left" title="COSE Sign1 signed minimal PAT"}
+{: #fig-example-pat artwork-align="left" title="Minimal PAT"}
 
 ~~~ cbor-diag
-{::include cddl/examples/cab-1.diag}
+{::include cddl2/cab/ex-1.diag}
 ~~~
-{: #fig-example-cab artwork-align="left" title="EAT Collection combining KAT and PAT"}
+{: #fig-example-cab artwork-align="left" title="CMW Collection combining KAT and PAT"}
 
 # Security Considerations
 
@@ -321,7 +320,13 @@ TODO IANA
 # Amalgamated CDDL
 
 ~~~ cddl
-{::include cddl/kat-bundle-autogen.cddl}
+{::include cddl2/cab/cab.cddl}
+
+{::include cddl2/kat/kat.cddl}
+
+{::include cddl2/pat/pat.cddl}
+
+{::include cddl2/cab/generic-sign1.cddl}
 ~~~
 
 # Acknowledgments

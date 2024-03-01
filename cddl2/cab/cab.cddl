@@ -1,0 +1,6 @@
+cab = {
+  "kat": [ "application/eat+cwt", bytes .cbor cose_sign1<kat> ]
+  "pat": [ "application/eat+cwt", bytes .cbor cose_sign1<pat> ]
+
+  "__cmwc_t": "tag:ietf.org,2024-02-29:rats/kat"
+}

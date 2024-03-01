@@ -1,0 +1,5 @@
+cose_sign1<C> = [
+  Headers
+  payload: bytes .cbor C
+  signature: bytes
+]
