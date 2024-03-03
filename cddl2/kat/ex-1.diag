@@ -1,10 +1,4 @@
 {
-    "kat": <<
-[
-    / protected / h'A10126',
-    / unprotected / {},
-    / payload (KAT Claims-Set) / <<
-{
     / nonce / 10: h'B91B03129222973C214E42BF31D6872A3EF2DBDDA401FBD1
 F725D48D6BF9C817',
     / kak-pub / 2500: {
@@ -25,27 +19,4 @@ F725D48D6BF9C817',
 15D020731E79A3B4E47120'
         }
     }
-}
-    >>,
-    / signature / h'56F50D131FA83979AE064E76E70DC75C070B6D991AEC08AD
-F9F41CAB7F1B7E2C47F67DACA8BB49E3119B7BAE77AEC6C89162713E0CC6D0E73278
-31E67F32841A'
-]
->>,
-    "pat": <<
-[
-    / protected / h'A10126',
-    / unprotected / {},
-    / payload (PAT Claims-Set) / <<
-{
-    / eat_nonce / 10: h'5ca3750daf829c30c20797eddb7949b1fd028c5408f2
-dd8650ad732327e3fb64'
-    / further platform specific claims /
-}
-    >>,
-    / signature / h'F9F41CAB7F1B7E2C47F67DACA8BB49E3119B7BAE77AEC6C8
-9162713E0CC6D0E7327831E67F32841A56F50D131FA83979AE064E76E70DC75C070B
-6D991AEC08AD'
-]
->>
 }

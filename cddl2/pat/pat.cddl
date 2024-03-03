@@ -1,0 +1,4 @@
+pat = {
+  &(eat_nonce: 10) => bstr .size (8..64)
+  * (int / text) => any
+}

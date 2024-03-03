@@ -10,18 +10,19 @@ else
 	    -b main https://github.com/martinthomson/i-d-template $(LIBDIR)
 endif
 
-include cddl/frag.mk
+CDDL := $(wildcard cddl2/kat/*.cddl)
+CDDL += $(wildcard cddl2/pat/*.cddl)
+CDDL += $(wildcard cddl2/cab/*.cddl)
 
-define cddl_targets
+DIAG := $(wildcard cddl2/kat/*.diag)
+DIAG += $(wildcard cddl2/pat/*.diag)
+DIAG += $(wildcard cddl2/cab/*.diag)
 
-$(drafts_xml):: cddl/$(1)-autogen.cddl
+$(drafts_xml):: cddl
 
-cddl/$(1)-autogen.cddl: $(addprefix cddl/,$(2))
-	$(MAKE) -C cddl check-$(1) check-$(1)-examples
+.PHONY: cddl
+cddl: $(CDDL) $(DIAG) ; $(MAKE) -C cddl2
 
-endef # cddl_targets
+lint:: cddl
 
-$(eval $(call cddl_targets,kat-bundle,$(KAT_BUNDLE_FRAGS)))
-$(eval $(call cddl_targets,kat,$(KAT_FRAGS)))
-
-clean:: ; $(MAKE) -C cddl clean
+clean:: ; $(MAKE) -C cddl2 clean
