@@ -12,14 +12,14 @@
        This document defines an evidence format for key attestation based on
 the Entity Attestation Token (EAT). 
     " name="description">
-<meta content="xml2rfc 3.19.4" name="generator">
+<meta content="xml2rfc 3.20.0" name="generator">
 <meta content="evidence" name="keyword">
 <meta content="key attestation" name="keyword">
 <meta content="TLS" name="keyword">
 <meta content="draft-bft-rats-kat-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.19.4
-    Python 3.11.6
+  xml2rfc 3.20.0
+    Python 3.11.8
     ConfigArgParse 1.7
     google-i18n-address 3.1.0
     intervaltree 3.1.0
@@ -1030,11 +1030,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">KAT</td>
-<td class="right">February 2024</td>
+<td class="right">March 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Brossard, et al.</td>
-<td class="center">Expires 30 August 2024</td>
+<td class="center">Expires 4 September 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1047,12 +1047,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-bft-rats-kat-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-02-27" class="published">27 February 2024</time>
+<time datetime="2024-03-03" class="published">3 March 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-08-30">30 August 2024</time></dd>
+<dd class="expires"><time datetime="2024-09-04">4 September 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1105,7 +1105,7 @@ the Entity Attestation Token (EAT).<a href="#section-abstract-1" class="pilcrow"
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 30 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 4 September 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1352,61 +1352,55 @@ example usage protocol is TLS with the extension defined in
 <figure id="figure-1">
         <div id="section-3-4.1">
           <div class="alignLeft art-svg artwork" id="section-3-4.1.1">
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="368" width="456" viewBox="0 0 456 368" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
-              <path d="M 16,32 L 16,160" fill="none" stroke="black"></path>
-              <path d="M 16,288 L 16,352" fill="none" stroke="black"></path>
-              <path d="M 32,80 L 32,144" fill="none" stroke="black"></path>
-              <path d="M 64,168 L 64,280" fill="none" stroke="black"></path>
-              <path d="M 144,80 L 144,144" fill="none" stroke="black"></path>
-              <path d="M 160,288 L 160,352" fill="none" stroke="black"></path>
-              <path d="M 168,80 L 168,144" fill="none" stroke="black"></path>
-              <path d="M 280,80 L 280,144" fill="none" stroke="black"></path>
-              <path d="M 296,32 L 296,160" fill="none" stroke="black"></path>
-              <path d="M 304,288 L 304,352" fill="none" stroke="black"></path>
-              <path d="M 448,288 L 448,352" fill="none" stroke="black"></path>
-              <path d="M 16,32 L 296,32" fill="none" stroke="black"></path>
-              <path d="M 32,80 L 144,80" fill="none" stroke="black"></path>
-              <path d="M 168,80 L 280,80" fill="none" stroke="black"></path>
-              <path d="M 32,144 L 144,144" fill="none" stroke="black"></path>
-              <path d="M 168,144 L 280,144" fill="none" stroke="black"></path>
-              <path d="M 16,160 L 296,160" fill="none" stroke="black"></path>
-              <path d="M 16,288 L 160,288" fill="none" stroke="black"></path>
-              <path d="M 304,288 L 448,288" fill="none" stroke="black"></path>
-              <path d="M 160,320 L 296,320" fill="none" stroke="black"></path>
-              <path d="M 16,352 L 160,352" fill="none" stroke="black"></path>
-              <path d="M 304,352 L 448,352" fill="none" stroke="black"></path>
-              <polygon class="arrowhead" points="304,320 292,314.4 292,325.6" fill="black" transform="rotate(0,296,320)"></polygon>
-              <polygon class="arrowhead" points="72,280 60,274.4 60,285.6" fill="black" transform="rotate(90,64,280)"></polygon>
-              <polygon class="arrowhead" points="72,168 60,162.4 60,173.6" fill="black" transform="rotate(270,64,168)"></polygon>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="368" width="448" viewBox="0 0 448 368" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+              <path d="M 8,48 L 8,192" fill="none" stroke="black"></path>
+              <path d="M 8,272 L 8,336" fill="none" stroke="black"></path>
+              <path d="M 24,48 L 24,160" fill="none" stroke="black"></path>
+              <path d="M 40,80 L 40,144" fill="none" stroke="black"></path>
+              <path d="M 72,168 L 72,264" fill="none" stroke="black"></path>
+              <path d="M 152,80 L 152,144" fill="none" stroke="black"></path>
+              <path d="M 152,272 L 152,336" fill="none" stroke="black"></path>
+              <path d="M 176,80 L 176,144" fill="none" stroke="black"></path>
+              <path d="M 288,80 L 288,144" fill="none" stroke="black"></path>
+              <path d="M 296,272 L 296,336" fill="none" stroke="black"></path>
+              <path d="M 304,48 L 304,160" fill="none" stroke="black"></path>
+              <path d="M 320,48 L 320,192" fill="none" stroke="black"></path>
+              <path d="M 440,272 L 440,336" fill="none" stroke="black"></path>
+              <path d="M 24,32 L 304,32" fill="none" stroke="black"></path>
+              <path d="M 24,48 L 304,48" fill="none" stroke="black"></path>
+              <path d="M 40,80 L 152,80" fill="none" stroke="black"></path>
+              <path d="M 176,80 L 288,80" fill="none" stroke="black"></path>
+              <path d="M 40,144 L 152,144" fill="none" stroke="black"></path>
+              <path d="M 176,144 L 288,144" fill="none" stroke="black"></path>
+              <path d="M 24,160 L 304,160" fill="none" stroke="black"></path>
+              <path d="M 24,208 L 304,208" fill="none" stroke="black"></path>
+              <path d="M 8,272 L 152,272" fill="none" stroke="black"></path>
+              <path d="M 296,272 L 440,272" fill="none" stroke="black"></path>
+              <path d="M 152,304 L 288,304" fill="none" stroke="black"></path>
+              <path d="M 8,336 L 152,336" fill="none" stroke="black"></path>
+              <path d="M 296,336 L 440,336" fill="none" stroke="black"></path>
+              <path d="M 24,32 C 15.16936,32 8,39.16936 8,48" fill="none" stroke="black"></path>
+              <path d="M 304,32 C 312.83064,32 320,39.16936 320,48" fill="none" stroke="black"></path>
+              <path d="M 24,208 C 15.16936,208 8,200.83064 8,192" fill="none" stroke="black"></path>
+              <path d="M 304,208 C 312.83064,208 320,200.83064 320,192" fill="none" stroke="black"></path>
+              <polygon class="arrowhead" points="296,304 284,298.4 284,309.6" fill="black" transform="rotate(0,288,304)"></polygon>
+              <polygon class="arrowhead" points="80,264 68,258.4 68,269.6" fill="black" transform="rotate(90,72,264)"></polygon>
+              <polygon class="arrowhead" points="80,168 68,162.4 68,173.6" fill="black" transform="rotate(270,72,168)"></polygon>
               <g class="text">
-                <text x="312" y="36">.</text>
-                <text x="60" y="52">Attester</text>
-                <text x="312" y="52">.</text>
-                <text x="312" y="68">.</text>
-                <text x="312" y="84">.</text>
-                <text x="56" y="100">Key</text>
-                <text x="212" y="100">Platform</text>
-                <text x="312" y="100">.</text>
-                <text x="88" y="116">Attestation</text>
-                <text x="224" y="116">Attestation</text>
-                <text x="312" y="116">.</text>
-                <text x="72" y="132">Service</text>
-                <text x="208" y="132">Service</text>
-                <text x="312" y="132">.</text>
-                <text x="312" y="148">.</text>
-                <text x="312" y="164">.</text>
-                <text x="312" y="180">.</text>
-                <text x="312" y="196">.</text>
-                <text x="152" y="212">Trusted</text>
-                <text x="224" y="212">Computing</text>
-                <text x="284" y="212">Base</text>
-                <text x="312" y="212">.</text>
-                <text x="32" y="228">.......</text>
-                <text x="192" y="228">...............................</text>
-                <text x="192" y="308">Usage</text>
-                <text x="252" y="308">Protocol</text>
-                <text x="88" y="324">Presenter</text>
-                <text x="376" y="324">Recipient</text>
+                <text x="68" y="68">Attester</text>
+                <text x="64" y="100">Key</text>
+                <text x="220" y="100">Platform</text>
+                <text x="96" y="116">Attestation</text>
+                <text x="232" y="116">Attestation</text>
+                <text x="80" y="132">Service</text>
+                <text x="216" y="132">Service</text>
+                <text x="160" y="196">Trusted</text>
+                <text x="232" y="196">Computing</text>
+                <text x="292" y="196">Base</text>
+                <text x="184" y="292">Usage</text>
+                <text x="244" y="292">Protocol</text>
+                <text x="80" y="308">Presenter</text>
+                <text x="368" y="308">Recipient</text>
               </g>
             </svg><a href="#section-3-4.1.1" class="pilcrow">¶</a>
 </div>
@@ -1491,16 +1485,18 @@ attestation result and includes (if needed) the IK public key (pIK).<a href="#se
 <figure id="figure-2">
           <div class="alignLeft art-cddl art-text artwork" id="section-4.1-2.1">
 <pre>
+;# import rfc9052
+
 kat = {
-    &amp;(eat_nonce: 10) =&gt; bstr .size (8..64)
-    &amp;(cnf: 8) =&gt; ak-pub
-    &amp;(kak-pub: 2500) =&gt; COSE_Key
+  &amp;(eat_nonce: 10) =&gt; bstr .size (8..64)
+  &amp;(cnf: 8) =&gt; ak-pub
+  &amp;(kak-pub: 2500) =&gt; COSE_Key
 }
 
 ak-pub = cnf-map
 
 cnf-map = {
-    &amp;(cose-key: 1) =&gt; COSE_Key
+  &amp;(cose-key: 1) =&gt; COSE_Key
 }
 </pre>
 </div>
@@ -1546,9 +1542,11 @@ as shown in <a href="#fig-kat-bundle-cddl" class="auto internal xref">Figure 3</
 <figure id="figure-3">
           <div class="alignLeft art-cddl art-text artwork" id="section-5.1-2.1">
 <pre>
-kat-bundle = {
-    "kat" =&gt; COSE-Sign1-kat
-    "pat" =&gt; EAT-CBOR-Token
+cab = {
+  "kat": [ "application/eat+cwt", bytes .cbor cose_sign1&lt;kat&gt; ]
+  "pat": [ "application/eat+cwt", bytes .cbor cose_sign1&lt;pat&gt; ]
+
+  "__cmwc_t": "tag:ietf.org,2024-02-29:rats/kat"
 }
 </pre>
 </div>
@@ -1578,14 +1576,10 @@ of the used KAK and therefore the linkage between the two layers.<a href="#secti
       <h2 id="name-examples">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-examples" class="section-name selfRef">Examples</a>
       </h2>
-<span id="name-cose-sign1-signed-kat"></span><div id="fig-example-sign1-kat">
+<span id="name-kat"></span><div id="fig-example-sign1-kat">
 <figure id="figure-4">
         <div class="alignLeft art-cbor-diag art-text artwork" id="section-6-1.1">
 <pre>
-[
-    / protected / h'A10126',
-    / unprotected / {},
-    / payload (KAT Claims-Set) / &lt;&lt;
 {
     / nonce / 10: h'B91B03129222973C214E42BF31D6872A3EF2DBDDA401FBD1
 F725D48D6BF9C817',
@@ -1608,100 +1602,86 @@ F725D48D6BF9C817',
         }
     }
 }
-    &gt;&gt;,
-    / signature / h'56F50D131FA83979AE064E76E70DC75C070B6D991AEC08AD
-F9F41CAB7F1B7E2C47F67DACA8BB49E3119B7BAE77AEC6C89162713E0CC6D0E73278
-31E67F32841A'
-]
 </pre>
 </div>
 <figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
-<a href="#name-cose-sign1-signed-kat" class="selfRef">COSE Sign1 signed KAT</a>
+<a href="#name-kat" class="selfRef">KAT</a>
         </figcaption></figure>
 </div>
-<span id="name-cose-sign1-signed-minimal-p"></span><div id="fig-example-pat">
+<span id="name-minimal-pat"></span><div id="fig-example-pat">
 <figure id="figure-5">
         <div class="alignLeft art-cbor-diag art-text artwork" id="section-6-2.1">
 <pre>
-[
-    / protected / h'A10126',
-    / unprotected / {},
-    / payload (PAT Claims-Set) / &lt;&lt;
 {
-    / eat_nonce / 10: h'5ca3750daf829c30c20797eddb7949b1fd028c5408f2
-dd8650ad732327e3fb64'
-    / further platform specific claims /
+  / eat_nonce / 10: h'FAF2BCA754DFD3F309FCED20791DC1173B1BF61CF5
+49145A6EDD4AD4CE2DC4F2'
 }
-    &gt;&gt;,
-    / signature / h'F9F41CAB7F1B7E2C47F67DACA8BB49E3119B7BAE77AEC6C8
-9162713E0CC6D0E7327831E67F32841A56F50D131FA83979AE064E76E70DC75C070B
-6D991AEC08AD'
-]
 </pre>
 </div>
 <figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
-<a href="#name-cose-sign1-signed-minimal-p" class="selfRef">COSE Sign1 signed minimal PAT</a>
+<a href="#name-minimal-pat" class="selfRef">Minimal PAT</a>
         </figcaption></figure>
 </div>
-<span id="name-eat-collection-combining-ka"></span><div id="fig-example-cab">
+<span id="name-cmw-collection-combining-ka"></span><div id="fig-example-cab">
 <figure id="figure-6">
         <div class="alignLeft art-cbor-diag art-text artwork" id="section-6-3.1">
 <pre>
 {
-    "kat": &lt;&lt;
-[
-    / protected / h'A10126',
-    / unprotected / {},
-    / payload (KAT Claims-Set) / &lt;&lt;
-{
-    / nonce / 10: h'B91B03129222973C214E42BF31D6872A3EF2DBDDA401FBD1
-F725D48D6BF9C817',
-    / kak-pub / 2500: {
-        / kty /  1: 2, / EC2 /
-        / crv / -1: 1, / P-256 /
-        / x /   -2: h'F0FFFA7BA35E76E44CA1F5446D327C8382A5A40E5F2974
-5DF948346C7C88A5D3',
-        / y /   -3: h'7CB4C4873CBB6F097562F61D5280768CD2CFE35FBA97E9
-97280DBAAAE3AF92FE'
-    },
-    / cnf / 8: {
-        / COSE_Key / 1: {
+  "kat": [
+    "application/eat+cwt",
+    &lt;&lt; [
+      / protected / h'A10126',
+      / unprotected / {},
+      / payload (KAT Claims-Set) / &lt;&lt; {
+        / nonce / 10: h'B91B03129222973C214E42BF31D6872A3EF2DBDD
+A401FBD1F725D48D6BF9C817',
+        / kak-pub / 2500: {
+          / kty /  1: 2, / EC2 /
+          / crv / -1: 1, / P-256 /
+          / x /   -2: h'F0FFFA7BA35E76E44CA1F5446D327C8382A5A40E
+5F29745DF948346C7C88A5D3',
+          / y /   -3: h'7CB4C4873CBB6F097562F61D5280768CD2CFE35F
+BA97E997280DBAAAE3AF92FE'
+        },
+        / cnf / 8: {
+          / COSE_Key / 1: {
             / kty /  1: 2, / EC2 /
             / crv / -1: 1, / P-256 /
-            / x /   -2: h'D7CC072DE2205BDC1537A543D53C60A6ACB62ECCD8
-90C7FA27C9E354089BBE13',
-            / y /   -3: h'F95E1D4B851A2CC80FFF87D8E23F22AFB725D535E5
-15D020731E79A3B4E47120'
+            / x /   -2: h'D7CC072DE2205BDC1537A543D53C60A6ACB62E
+CCD890C7FA27C9E354089BBE13',
+            / y /   -3: h'F95E1D4B851A2CC80FFF87D8E23F22AFB725D5
+35E515D020731E79A3B4E47120'
+          }
         }
-    }
-}
-    &gt;&gt;,
-    / signature / h'56F50D131FA83979AE064E76E70DC75C070B6D991AEC08AD
-F9F41CAB7F1B7E2C47F67DACA8BB49E3119B7BAE77AEC6C89162713E0CC6D0E73278
-31E67F32841A'
-]
-&gt;&gt;,
-    "pat": &lt;&lt;
-[
-    / protected / h'A10126',
-    / unprotected / {},
-    / payload (PAT Claims-Set) / &lt;&lt;
-{
-    / eat_nonce / 10: h'5ca3750daf829c30c20797eddb7949b1fd028c5408f2
-dd8650ad732327e3fb64'
-    / further platform specific claims /
-}
-    &gt;&gt;,
-    / signature / h'F9F41CAB7F1B7E2C47F67DACA8BB49E3119B7BAE77AEC6C8
-9162713E0CC6D0E7327831E67F32841A56F50D131FA83979AE064E76E70DC75C070B
-6D991AEC08AD'
-]
-&gt;&gt;
+      } &gt;&gt;,
+      / signature / h'56F50D131FA83979AE064E76E70DC75C070B6D991A
+EC08ADF9F41CAB7F1B7E2C47F67DACA8BB49E3119B7BAE77AEC6C89162713E0C
+C6D0E7327831E67F32841A'
+    ] &gt;&gt;
+  ],
+
+  "pat": [
+    "application/eat+cwt",
+    &lt;&lt; [
+      / protected / h'A10126',
+      / unprotected / {},
+      / payload (PAT Claims-Set) / &lt;&lt; {
+      / eat_nonce / 10: h'5CA3750DAF829C30C20797EDDB7949B1FD028C
+5408F2DD8650AD732327E3FB64'
+      / further platform specific claims /
+    } &gt;&gt;,
+    / signature / h'F9F41CAB7F1B7E2C47F67DACA8BB49E3119B7BAE77AE
+C6C89162713E0CC6D0E7327831E67F32841A56F50D131FA83979AE064E76E70D
+C75C070B6D991AEC08AD'
+    ] &gt;&gt;
+  ],
+
+  "__cmwc_t": "tag:ietf.org,2024-02-29:rats/kat"
 }
 </pre>
 </div>
 <figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
-<a href="#name-eat-collection-combining-ka" class="selfRef">EAT Collection combining KAT and PAT</a>
+<a href="#name-cmw-collection-combining-ka" class="selfRef">CMW Collection combining KAT and PAT</a>
         </figcaption></figure>
 </div>
 </section>
@@ -1800,51 +1780,37 @@ dd8650ad732327e3fb64'
       </h2>
 <div class="lang-cddl sourcecode" id="appendix-A-1">
 <pre>
-start = kat-bundle
+cab = {
+  "kat": [ "application/eat+cwt", bytes .cbor cose_sign1&lt;kat&gt; ]
+  "pat": [ "application/eat+cwt", bytes .cbor cose_sign1&lt;pat&gt; ]
 
-kat-bundle = {
-    "kat" =&gt; COSE-Sign1-kat
-    "pat" =&gt; EAT-CBOR-Token
+  "__cmwc_t": "tag:ietf.org,2024-02-29:rats/kat"
 }
 
+;# import rfc9052
+
 kat = {
-    &amp;(eat_nonce: 10) =&gt; bstr .size (8..64)
-    &amp;(cnf: 8) =&gt; ak-pub
-    &amp;(kak-pub: 2500) =&gt; COSE_Key
+  &amp;(eat_nonce: 10) =&gt; bstr .size (8..64)
+  &amp;(cnf: 8) =&gt; ak-pub
+  &amp;(kak-pub: 2500) =&gt; COSE_Key
 }
 
 ak-pub = cnf-map
 
 cnf-map = {
-    &amp;(cose-key: 1) =&gt; COSE_Key
+  &amp;(cose-key: 1) =&gt; COSE_Key
 }
 
-COSE-Sign1-kat = [
-    protected: bytes .cbor kat-protected-headers
-    unprotected: {}
-    payload: bytes .cbor kat
-    signature: bytes
+pat = {
+  &amp;(eat_nonce: 10) =&gt; bstr .size (8..64)
+  * (int / text) =&gt; any
+}
+
+cose_sign1&lt;C&gt; = [
+  Headers
+  payload: bytes .cbor C
+  signature: bytes
 ]
-
-kat-protected-headers = {
-    &amp;(alg-id: 1) =&gt; int
-}
-
-EAT-CBOR-Token = any
-
-
-label = int / text
-values = any
-
-COSE_Key = {
-    &amp;(kty: 1) =&gt; text / int
-    ? &amp;(kid: 2) =&gt; bytes
-    ? &amp;(alg: 3) =&gt; text / int
-    ? &amp;(key_ops: 4) =&gt; [+ (text / int) ]
-    ? &amp;(base_iv: 5) =&gt; bytes
-    * label =&gt; values
-}
-
 </pre><a href="#appendix-A-1" class="pilcrow">¶</a>
 </div>
 </section>

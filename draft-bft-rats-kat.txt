@@ -5,9 +5,9 @@
 Remote ATtestation ProcedureS                                M. Brossard
 Internet-Draft                                                       arm
 Intended status: Standards Track                              T. Fossati
-Expires: 30 August 2024                                           Linaro
+Expires: 4 September 2024                                         Linaro
                                                            H. Tschofenig
-                                                        27 February 2024
+                                                            3 March 2024
 
 
                    An EAT-based Key Attestation Token
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 August 2024.
+   This Internet-Draft will expire on 4 September 2024.
 
 Copyright Notice
 
@@ -202,27 +202,26 @@ Table of Contents
    example usage protocol is TLS with the extension defined in
    [I-D.fossati-tls-attestation].
 
-    +----------------------------------+ .
-    | Attester                         | .
-    |                                  | .
-    | +-------------+  +-------------+ | .
-    | | Key         |  | Platform    | | .
-    | | Attestation |  | Attestation | | .
-    | | Service     |  | Service     | | .
-    | +-------------+  +-------------+ | .
-    +----------------------------------+ .
-          ^                              .
-          |                              .
-          |       Trusted Computing Base .
-   .......|...............................
-          |
-          |
-          v
-    +-----------------+                 +-----------------+
+     .------------------------------------.
+    | .----------------------------------. |
+    | | Attester                         | |
+    | | .-------------.  .-------------. | |
+    | | | Key         |  | Platform    | | |
+    | | | Attestation |  | Attestation | | |
+    | | | Service     |  | Service     | | |
+    | | '-------------'  '-------------' | |
+    | '----------------------------------' |
+    |       ^                              |
+    |       |       Trusted Computing Base |
+     '------+-----------------------------'
+            |
+            |
+            v
+    .-----------------.                 .-----------------.
     |                 | Usage Protocol  |                 |
     |    Presenter    +---------------->|    Recipient    |
     |                 |                 |                 |
-    +-----------------+                 +-----------------+
+    '-----------------'                 '-----------------'
 
                            Figure 1: Architecture
 
@@ -288,16 +287,18 @@ Table of Contents
    The KAT utilizes the proof-of-possession functionality defined in
    [RFC8747] to encode the public key of the IK (pIK).
 
+   ;# import rfc9052
+
    kat = {
-       &(eat_nonce: 10) => bstr .size (8..64)
-       &(cnf: 8) => ak-pub
-       &(kak-pub: 2500) => COSE_Key
+     &(eat_nonce: 10) => bstr .size (8..64)
+     &(cnf: 8) => ak-pub
+     &(kak-pub: 2500) => COSE_Key
    }
 
    ak-pub = cnf-map
 
    cnf-map = {
-       &(cose-key: 1) => COSE_Key
+     &(cose-key: 1) => COSE_Key
    }
 
                           Figure 2: KAT Definition
@@ -326,9 +327,11 @@ Table of Contents
    The KAT and PAT tokens are combined in a CMW "collection"
    [I-D.ietf-rats-msg-wrap] as shown in Figure 3.
 
-   kat-bundle = {
-       "kat" => COSE-Sign1-kat
-       "pat" => EAT-CBOR-Token
+   cab = {
+     "kat": [ "application/eat+cwt", bytes .cbor cose_sign1<kat> ]
+     "pat": [ "application/eat+cwt", bytes .cbor cose_sign1<pat> ]
+
+     "__cmwc_t": "tag:ietf.org,2024-02-29:rats/kat"
    }
 
                       Figure 3: KAT Bundle Definition
@@ -345,10 +348,6 @@ Table of Contents
 
 6.  Examples
 
-   [
-       / protected / h'A10126',
-       / unprotected / {},
-       / payload (KAT Claims-Set) / <<
    {
        / nonce / 10: h'B91B03129222973C214E42BF31D6872A3EF2DBDDA401FBD1
    F725D48D6BF9C817',
@@ -371,84 +370,70 @@ Table of Contents
            }
        }
    }
-       >>,
-       / signature / h'56F50D131FA83979AE064E76E70DC75C070B6D991AEC08AD
-   F9F41CAB7F1B7E2C47F67DACA8BB49E3119B7BAE77AEC6C89162713E0CC6D0E73278
-   31E67F32841A'
-   ]
 
-                      Figure 4: COSE Sign1 signed KAT
+                               Figure 4: KAT
 
-   [
-       / protected / h'A10126',
-       / unprotected / {},
-       / payload (PAT Claims-Set) / <<
    {
-       / eat_nonce / 10: h'5ca3750daf829c30c20797eddb7949b1fd028c5408f2
-   dd8650ad732327e3fb64'
-       / further platform specific claims /
+     / eat_nonce / 10: h'FAF2BCA754DFD3F309FCED20791DC1173B1BF61CF5
+   49145A6EDD4AD4CE2DC4F2'
    }
-       >>,
-       / signature / h'F9F41CAB7F1B7E2C47F67DACA8BB49E3119B7BAE77AEC6C8
-   9162713E0CC6D0E7327831E67F32841A56F50D131FA83979AE064E76E70DC75C070B
-   6D991AEC08AD'
-   ]
 
-                  Figure 5: COSE Sign1 signed minimal PAT
+                           Figure 5: Minimal PAT
 
    {
-       "kat": <<
-   [
-       / protected / h'A10126',
-       / unprotected / {},
-       / payload (KAT Claims-Set) / <<
-   {
-       / nonce / 10: h'B91B03129222973C214E42BF31D6872A3EF2DBDDA401FBD1
-   F725D48D6BF9C817',
-       / kak-pub / 2500: {
-           / kty /  1: 2, / EC2 /
-           / crv / -1: 1, / P-256 /
-           / x /   -2: h'F0FFFA7BA35E76E44CA1F5446D327C8382A5A40E5F2974
-   5DF948346C7C88A5D3',
-           / y /   -3: h'7CB4C4873CBB6F097562F61D5280768CD2CFE35FBA97E9
-   97280DBAAAE3AF92FE'
-       },
-       / cnf / 8: {
-           / COSE_Key / 1: {
+     "kat": [
+       "application/eat+cwt",
+       << [
+         / protected / h'A10126',
+         / unprotected / {},
+         / payload (KAT Claims-Set) / << {
+           / nonce / 10: h'B91B03129222973C214E42BF31D6872A3EF2DBDD
+   A401FBD1F725D48D6BF9C817',
+           / kak-pub / 2500: {
+             / kty /  1: 2, / EC2 /
+             / crv / -1: 1, / P-256 /
+             / x /   -2: h'F0FFFA7BA35E76E44CA1F5446D327C8382A5A40E
+   5F29745DF948346C7C88A5D3',
+             / y /   -3: h'7CB4C4873CBB6F097562F61D5280768CD2CFE35F
+   BA97E997280DBAAAE3AF92FE'
+           },
+           / cnf / 8: {
+             / COSE_Key / 1: {
                / kty /  1: 2, / EC2 /
                / crv / -1: 1, / P-256 /
-               / x /   -2: h'D7CC072DE2205BDC1537A543D53C60A6ACB62ECCD8
-   90C7FA27C9E354089BBE13',
-               / y /   -3: h'F95E1D4B851A2CC80FFF87D8E23F22AFB725D535E5
-   15D020731E79A3B4E47120'
+               / x /   -2: h'D7CC072DE2205BDC1537A543D53C60A6ACB62E
+   CCD890C7FA27C9E354089BBE13',
+               / y /   -3: h'F95E1D4B851A2CC80FFF87D8E23F22AFB725D5
+   35E515D020731E79A3B4E47120'
+             }
            }
-       }
-   }
-       >>,
-       / signature / h'56F50D131FA83979AE064E76E70DC75C070B6D991AEC08AD
-   F9F41CAB7F1B7E2C47F67DACA8BB49E3119B7BAE77AEC6C89162713E0CC6D0E73278
-   31E67F32841A'
-   ]
-   >>,
-       "pat": <<
-   [
-       / protected / h'A10126',
-       / unprotected / {},
-       / payload (PAT Claims-Set) / <<
-   {
-       / eat_nonce / 10: h'5ca3750daf829c30c20797eddb7949b1fd028c5408f2
-   dd8650ad732327e3fb64'
-       / further platform specific claims /
-   }
-       >>,
-       / signature / h'F9F41CAB7F1B7E2C47F67DACA8BB49E3119B7BAE77AEC6C8
-   9162713E0CC6D0E7327831E67F32841A56F50D131FA83979AE064E76E70DC75C070B
-   6D991AEC08AD'
-   ]
-   >>
+         } >>,
+         / signature / h'56F50D131FA83979AE064E76E70DC75C070B6D991A
+   EC08ADF9F41CAB7F1B7E2C47F67DACA8BB49E3119B7BAE77AEC6C89162713E0C
+   C6D0E7327831E67F32841A'
+       ] >>
+     ],
+
+     "pat": [
+       "application/eat+cwt",
+       << [
+         / protected / h'A10126',
+         / unprotected / {},
+         / payload (PAT Claims-Set) / << {
+         / eat_nonce / 10: h'5CA3750DAF829C30C20797EDDB7949B1FD028C
+   5408F2DD8650AD732327E3FB64'
+         / further platform specific claims /
+       } >>,
+       / signature / h'F9F41CAB7F1B7E2C47F67DACA8BB49E3119B7BAE77AE
+   C6C89162713E0CC6D0E7327831E67F32841A56F50D131FA83979AE064E76E70D
+   C75C070B6D991AEC08AD'
+       ] >>
+     ],
+
+     "__cmwc_t": "tag:ietf.org,2024-02-29:rats/kat"
    }
 
-               Figure 6: EAT Collection combining KAT and PAT
+               Figure 6: CMW Collection combining KAT and PAT
 
 7.  Security Considerations
 
@@ -537,50 +522,37 @@ Table of Contents
 
 Appendix A.  Amalgamated CDDL
 
-   start = kat-bundle
+   cab = {
+     "kat": [ "application/eat+cwt", bytes .cbor cose_sign1<kat> ]
+     "pat": [ "application/eat+cwt", bytes .cbor cose_sign1<pat> ]
 
-   kat-bundle = {
-       "kat" => COSE-Sign1-kat
-       "pat" => EAT-CBOR-Token
+     "__cmwc_t": "tag:ietf.org,2024-02-29:rats/kat"
    }
 
+   ;# import rfc9052
+
    kat = {
-       &(eat_nonce: 10) => bstr .size (8..64)
-       &(cnf: 8) => ak-pub
-       &(kak-pub: 2500) => COSE_Key
+     &(eat_nonce: 10) => bstr .size (8..64)
+     &(cnf: 8) => ak-pub
+     &(kak-pub: 2500) => COSE_Key
    }
 
    ak-pub = cnf-map
 
    cnf-map = {
-       &(cose-key: 1) => COSE_Key
+     &(cose-key: 1) => COSE_Key
    }
 
-   COSE-Sign1-kat = [
-       protected: bytes .cbor kat-protected-headers
-       unprotected: {}
-       payload: bytes .cbor kat
-       signature: bytes
+   pat = {
+     &(eat_nonce: 10) => bstr .size (8..64)
+     * (int / text) => any
+   }
+
+   cose_sign1<C> = [
+     Headers
+     payload: bytes .cbor C
+     signature: bytes
    ]
-
-   kat-protected-headers = {
-       &(alg-id: 1) => int
-   }
-
-   EAT-CBOR-Token = any
-
-
-   label = int / text
-   values = any
-
-   COSE_Key = {
-       &(kty: 1) => text / int
-       ? &(kid: 2) => bytes
-       ? &(alg: 3) => text / int
-       ? &(key_ops: 4) => [+ (text / int) ]
-       ? &(base_iv: 5) => bytes
-       * label => values
-   }
 
 Acknowledgments
 
