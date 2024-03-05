@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-03T00:40:03.121999+00:00",
+  "timestamp": "2024-03-05T00:37:40.841685+00:00",
   "repo": "thomas-fossati/draft-kat",
   "labels": [
     {
@@ -1065,24 +1065,26 @@
       "id": "PR_kwDOIIKzuM5oahhd",
       "title": "rework cddl (align with CMW)",
       "url": "https://github.com/thomas-fossati/draft-kat/pull/24",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "thomas-fossati",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "cc @hannestschofenig ",
       "createdAt": "2024-03-01T14:09:18Z",
-      "updatedAt": "2024-03-01T14:09:18Z",
+      "updatedAt": "2024-03-03T10:46:37Z",
       "baseRepository": "thomas-fossati/draft-kat",
       "baseRefName": "main",
       "baseRefOid": "5643fcdb66d74117b07ddade12138440329e193e",
       "headRepository": "thomas-fossati/draft-kat",
       "headRefName": "new-cddl",
       "headRefOid": "9d3385e512335f1524360d7e2a26f280a26f6528",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-03-03T10:46:35Z",
+      "mergedAt": "2024-03-03T10:46:35Z",
+      "mergedBy": "thomas-fossati",
+      "mergeCommit": {
+        "oid": "07dce8b87ca168807cc30d15794b8b2191159361"
+      },
       "comments": [],
       "reviews": []
     }
