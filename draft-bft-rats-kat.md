@@ -26,6 +26,10 @@ author:
  - name: Hannes Tschofenig
    email: hannes.tschofenig@gmx.net
 
+contributor:
+ - name: Ionuț Mihalcea
+   organization: arm
+ 
 normative:
   I-D.ietf-rats-eat: eat
   I-D.ietf-rats-msg-wrap: cmw
