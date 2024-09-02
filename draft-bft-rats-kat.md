@@ -29,7 +29,7 @@ author:
 contributor:
  - name: Ionuț Mihalcea
    organization: arm
- 
+
 normative:
   I-D.ietf-rats-eat: eat
   I-D.ietf-rats-msg-wrap: cmw
