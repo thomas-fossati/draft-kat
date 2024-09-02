@@ -5,9 +5,9 @@
 Remote ATtestation ProcedureS                                M. Brossard
 Internet-Draft                                                       arm
 Intended status: Standards Track                              T. Fossati
-Expires: 4 September 2024                                         Linaro
+Expires: 6 March 2025                                             Linaro
                                                            H. Tschofenig
-                                                            3 March 2024
+                                                        2 September 2024
 
 
                    An EAT-based Key Attestation Token
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 September 2024.
+   This Internet-Draft will expire on 6 March 2025.
 
 Copyright Notice
 
@@ -78,6 +78,7 @@ Table of Contents
      9.2.  Informative References
    Appendix A.  Amalgamated CDDL
    Acknowledgments
+   Contributors
    Authors' Addresses
 
 1.  Introduction
@@ -450,16 +451,16 @@ Table of Contents
    [I-D.ietf-rats-eat]
               Lundblade, L., Mandyam, G., O'Donoghue, J., and C.
               Wallace, "The Entity Attestation Token (EAT)", Work in
-              Progress, Internet-Draft, draft-ietf-rats-eat-25, 15
-              January 2024, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-rats-eat-25>.
+              Progress, Internet-Draft, draft-ietf-rats-eat-30, 2 August
+              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              rats-eat-30>.
 
    [I-D.ietf-rats-msg-wrap]
               Birkholz, H., Smith, N., Fossati, T., and H. Tschofenig,
               "RATS Conceptual Messages Wrapper (CMW)", Work in
-              Progress, Internet-Draft, draft-ietf-rats-msg-wrap-04, 27
-              February 2024, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-rats-msg-wrap-04>.
+              Progress, Internet-Draft, draft-ietf-rats-msg-wrap-07, 24
+              July 2024, <https://datatracker.ietf.org/doc/html/draft-
+              ietf-rats-msg-wrap-07>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -499,21 +500,21 @@ Table of Contents
 9.2.  Informative References
 
    [I-D.fossati-tls-attestation]
-              Tschofenig, H., Sheffer, Y., Howard, P., Mihalcea, I., and
-              Y. Deshpande, "Using Attestation in Transport Layer
-              Security (TLS) and Datagram Transport Layer Security
-              (DTLS)", Work in Progress, Internet-Draft, draft-fossati-
-              tls-attestation-04, 23 October 2023,
-              <https://datatracker.ietf.org/doc/html/draft-fossati-tls-
-              attestation-04>.
+              Tschofenig, H., Sheffer, Y., Howard, P., Mihalcea, I.,
+              Deshpande, Y., Niemi, A., and T. Fossati, "Using
+              Attestation in Transport Layer Security (TLS) and Datagram
+              Transport Layer Security (DTLS)", Work in Progress,
+              Internet-Draft, draft-fossati-tls-attestation-07, 8 July
+              2024, <https://datatracker.ietf.org/doc/html/draft-
+              fossati-tls-attestation-07>.
 
    [I-D.tschofenig-rats-psa-token]
               Tschofenig, H., Frost, S., Brossard, M., Shaw, A. L., and
               T. Fossati, "Arm's Platform Security Architecture (PSA)
               Attestation Token", Work in Progress, Internet-Draft,
-              draft-tschofenig-rats-psa-token-22, 21 February 2024,
+              draft-tschofenig-rats-psa-token-23, 24 June 2024,
               <https://datatracker.ietf.org/doc/html/draft-tschofenig-
-              rats-psa-token-22>.
+              rats-psa-token-23>.
 
    [RFC9334]  Birkholz, H., Thaler, D., Richardson, M., Smith, N., and
               W. Pan, "Remote ATtestation procedureS (RATS)
@@ -557,6 +558,12 @@ Appendix A.  Amalgamated CDDL
 Acknowledgments
 
    TODO acknowledge.
+
+Contributors
+
+   Ionuț Mihalcea
+   arm
+
 
 Authors' Addresses
 
