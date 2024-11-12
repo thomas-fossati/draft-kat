@@ -25,6 +25,8 @@ author:
    email: thomas.fossati@linaro.org
  - name: Hannes Tschofenig
    email: hannes.tschofenig@gmx.net
+ - name: Henk Birkholz
+   email: henk.birkholz@ietf.contact
 
 contributor:
  - name: Ionuț Mihalcea
