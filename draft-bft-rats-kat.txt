@@ -5,9 +5,11 @@
 Remote ATtestation ProcedureS                                M. Brossard
 Internet-Draft                                                       arm
 Intended status: Standards Track                              T. Fossati
-Expires: 6 March 2025                                             Linaro
+Expires: 16 May 2025                                              Linaro
                                                            H. Tschofenig
-                                                        2 September 2024
+                                                                        
+                                                             H. Birkholz
+                                                        12 November 2024
 
 
                    An EAT-based Key Attestation Token
@@ -44,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 March 2025.
+   This Internet-Draft will expire on 16 May 2025.
 
 Copyright Notice
 
@@ -451,16 +453,16 @@ Table of Contents
    [I-D.ietf-rats-eat]
               Lundblade, L., Mandyam, G., O'Donoghue, J., and C.
               Wallace, "The Entity Attestation Token (EAT)", Work in
-              Progress, Internet-Draft, draft-ietf-rats-eat-30, 2 August
-              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              rats-eat-30>.
+              Progress, Internet-Draft, draft-ietf-rats-eat-31, 6
+              September 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-rats-eat-31>.
 
    [I-D.ietf-rats-msg-wrap]
               Birkholz, H., Smith, N., Fossati, T., and H. Tschofenig,
               "RATS Conceptual Messages Wrapper (CMW)", Work in
-              Progress, Internet-Draft, draft-ietf-rats-msg-wrap-07, 24
-              July 2024, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-rats-msg-wrap-07>.
+              Progress, Internet-Draft, draft-ietf-rats-msg-wrap-10, 4
+              November 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-rats-msg-wrap-10>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -504,17 +506,17 @@ Table of Contents
               Deshpande, Y., Niemi, A., and T. Fossati, "Using
               Attestation in Transport Layer Security (TLS) and Datagram
               Transport Layer Security (DTLS)", Work in Progress,
-              Internet-Draft, draft-fossati-tls-attestation-07, 8 July
-              2024, <https://datatracker.ietf.org/doc/html/draft-
-              fossati-tls-attestation-07>.
+              Internet-Draft, draft-fossati-tls-attestation-08, 21
+              October 2024, <https://datatracker.ietf.org/doc/html/
+              draft-fossati-tls-attestation-08>.
 
    [I-D.tschofenig-rats-psa-token]
               Tschofenig, H., Frost, S., Brossard, M., Shaw, A. L., and
               T. Fossati, "Arm's Platform Security Architecture (PSA)
               Attestation Token", Work in Progress, Internet-Draft,
-              draft-tschofenig-rats-psa-token-23, 24 June 2024,
+              draft-tschofenig-rats-psa-token-24, 23 September 2024,
               <https://datatracker.ietf.org/doc/html/draft-tschofenig-
-              rats-psa-token-23>.
+              rats-psa-token-24>.
 
    [RFC9334]  Birkholz, H., Thaler, D., Richardson, M., Smith, N., and
               W. Pan, "Remote ATtestation procedureS (RATS)
@@ -579,3 +581,7 @@ Authors' Addresses
 
    Hannes Tschofenig
    Email: hannes.tschofenig@gmx.net
+
+
+   Henk Birkholz
+   Email: henk.birkholz@ietf.contact
