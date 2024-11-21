@@ -5,11 +5,11 @@
 Remote ATtestation ProcedureS                                M. Brossard
 Internet-Draft                                                       arm
 Intended status: Standards Track                              T. Fossati
-Expires: 16 May 2025                                              Linaro
+Expires: 25 May 2025                                              Linaro
                                                            H. Tschofenig
                                                                         
                                                              H. Birkholz
-                                                        12 November 2024
+                                                        21 November 2024
 
 
                    An EAT-based Key Attestation Token
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 May 2025.
+   This Internet-Draft will expire on 25 May 2025.
 
 Copyright Notice
 
@@ -458,11 +458,11 @@ Table of Contents
               draft-ietf-rats-eat-31>.
 
    [I-D.ietf-rats-msg-wrap]
-              Birkholz, H., Smith, N., Fossati, T., and H. Tschofenig,
-              "RATS Conceptual Messages Wrapper (CMW)", Work in
-              Progress, Internet-Draft, draft-ietf-rats-msg-wrap-10, 4
-              November 2024, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-rats-msg-wrap-10>.
+              Birkholz, H., Smith, N., Fossati, T., Tschofenig, H., and
+              D. Glaze, "RATS Conceptual Messages Wrapper (CMW)", Work
+              in Progress, Internet-Draft, draft-ietf-rats-msg-wrap-11,
+              15 November 2024, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-rats-msg-wrap-11>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
