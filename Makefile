@@ -22,7 +22,7 @@ DIAG := $(wildcard cddl2/kat/*.diag)
 DIAG += $(wildcard cddl2/pat/*.diag)
 DIAG += $(wildcard cddl2/cab/*.diag)
 
-$(drafts_xml):: cddl
+$(drafts_xml): cddl
 
 .PHONY: cddl
 cddl: $(CDDL) $(DIAG) ; $(MAKE) -C cddl2
