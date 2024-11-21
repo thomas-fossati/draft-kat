@@ -1,6 +1,6 @@
-# Key Attestation Token
+# An EAT-based Key Attestation Token
 
-This is the working area for the individual Internet-Draft, "Key Attestation Token".
+This is the working area for the individual Internet-Draft, "An EAT-based Key Attestation Token".
 
 * [Editor's Copy](https://thomas-fossati.github.io/draft-kat/#go.draft-bft-rats-kat.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-bft-rats-kat)
