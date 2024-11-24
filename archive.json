@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-21T00:54:20.688010+00:00",
+  "timestamp": "2024-11-24T00:59:11.228878+00:00",
   "repo": "thomas-fossati/draft-kat",
   "labels": [
     {
@@ -847,7 +847,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2023-08-19T09:53:37Z",
-      "updatedAt": "2024-11-12T13:53:45Z",
+      "updatedAt": "2024-11-21T13:15:17Z",
       "baseRepository": "thomas-fossati/draft-kat",
       "baseRefName": "main",
       "baseRefOid": "49bee9368bccb0cdad7a03d3c1c3ae4739d8a652",
@@ -970,6 +970,26 @@
               "body": "please give me until the end of the week to provide some feedback here (abroad the next days)",
               "createdAt": "2024-11-12T13:53:45Z",
               "updatedAt": "2024-11-12T13:53:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOIIKzuM6SHKny",
+          "commit": {
+            "abbreviatedOid": "bed48d0"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-11-21T13:15:17Z",
+          "updatedAt": "2024-11-21T13:15:17Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "> please give me until the end of the week to provide some feedback here (abroad the next days)\r\n\r\n@henkbirkholz bumping this back to the top of your inbox.",
+              "createdAt": "2024-11-21T13:15:17Z",
+              "updatedAt": "2024-11-21T13:15:17Z"
             }
           ]
         }
