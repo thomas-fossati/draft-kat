@@ -11,6 +11,7 @@ Expires: 20 April 2026                                            Linaro
                                                              H. Birkholz
                                                                         
                                                              I. Mihalcea
+                                                                     arm
                                                          17 October 2025
 
 
@@ -83,7 +84,6 @@ Table of Contents
      9.2.  Informative References
    Appendix A.  Amalgamated CDDL
    Acknowledgments
-   Contributors
    Authors' Addresses
 
 1.  Introduction
@@ -580,12 +580,6 @@ Acknowledgments
 
    Yaron Sheffer.
 
-Contributors
-
-   Ionuț Mihalcea
-   arm
-
-
 Authors' Addresses
 
    Mathias Brossard
@@ -607,4 +601,5 @@ Authors' Addresses
 
 
    Ionuț Mihalcea
+   arm
    Email: ionut.mihalcea@arm.com
