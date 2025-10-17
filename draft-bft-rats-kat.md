@@ -28,11 +28,8 @@ author:
  - name: Henk Birkholz
    email: henk.birkholz@ietf.contact
  - name: Ionuț Mihalcea
-   email: ionut.mihalcea@arm.com
-
-contributor:
- - name: Ionuț Mihalcea
    organization: arm
+   email: ionut.mihalcea@arm.com
 
 normative:
   I-D.ietf-rats-eat: eat
