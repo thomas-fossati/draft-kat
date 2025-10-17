@@ -9,6 +9,8 @@ Expires: 20 April 2026                                            Linaro
                                                            H. Tschofenig
                                                                         
                                                              H. Birkholz
+                                                                        
+                                                             I. Mihalcea
                                                          17 October 2025
 
 
@@ -459,8 +461,6 @@ Table of Contents
    must have some knowledge about its internal architecture and the
    security threats it is subject to.
 
-   TODO Security
-
 8.  IANA Considerations
 
    TODO IANA
@@ -604,3 +604,7 @@ Authors' Addresses
 
    Henk Birkholz
    Email: henk.birkholz@ietf.contact
+
+
+   Ionuț Mihalcea
+   Email: ionut.mihalcea@arm.com
