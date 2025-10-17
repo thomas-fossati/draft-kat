@@ -578,7 +578,7 @@ Appendix A.  Amalgamated CDDL
 
 Acknowledgments
 
-   TODO acknowledge.
+   Yaron Sheffer.
 
 Contributors
 
